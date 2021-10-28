@@ -29,3 +29,10 @@ def register():
 @lazuli.route("/login")
 def login():
     return render_template('auth/login.html')
+
+# /tlantisitl/servicios
+
+@lazuli.route("/servicios")
+def servicios():
+    return render_template('auth/servicios.html')
+
