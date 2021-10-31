@@ -1,9 +1,9 @@
-drop database clinicadental;
+#drop database clinicadental;
 create database clinicaDental;
 use clinicaDental;
 
 create table clinicas(
-idClinica int,
+idClinica int auto_increment,
 nombreClinica varchar (255),
 direcccion varchar (255),
 telefono varchar (50),
@@ -16,7 +16,7 @@ select * from clinicas;
 
 
 create table servicios(
-idServicio int,
+idServicio int auto_increment,
 nombreServicio varchar (255),
 costoServicio float,
 constraint pk_is primary key (idServicio)
@@ -32,7 +32,7 @@ select * from servicios;
 
 
 create table roles (
-idRol int,
+idRol int auto_increment,
 tipoRol varchar (50),
 constraint pk_ir primary key (idRol)
 );
@@ -41,7 +41,7 @@ insert into roles values (02, "Medico");
 insert into roles values (03, "Asistente Administrativo");
 
 create table consultorios(
-claveC1 int,
+claveC1 int auto_increment,
 horario varchar (12),
 constraint pk_icon primary key (claveC1)
 );
@@ -50,7 +50,7 @@ insert into consultorios values (02, 'Vespertino');
 
 
 create table empleados(
-idEmpleado int,
+idEmpleado int auto_increment,
 nombreEmpleado varchar(255),
 apellidoPAtEmpleado varchar(255),
 apellidoMatEmpleado varchar(255),
@@ -74,7 +74,7 @@ insert into empleados values (05, "Josue", "Vela", "Valle", "SIN", "josue@withet
 select * from empleados;
 
 create table registroCitas (
-idCitas int,
+idCitas int auto_increment,
 nombrePaciente varchar (255),
 apellidoPatPaciente varchar (255),
 apellidoMatPaciente varchar (255),
@@ -107,7 +107,7 @@ insert into registroCitas values (05, "Ernesto", "Bernarl", "Suarez", 12, 735812
 select * from registroCitas;
 
 create table cancelacion (
-idCancelacion int,
+idCancelacion int auto_increment,
 telefono varchar (50),
 nota varchar (250),
 fechaCancelacion datetime DEFAULT(NOW()),
@@ -119,7 +119,7 @@ insert into cancelacion values (01, "7778129300", "El cliente re agendara una ci
 select * from cancelacion;
 
 create table pago(
-idPago int, 
+idPago int auto_increment, 
 pagoTotal float,
 notaPago varchar (250),
 idCitaPago int,

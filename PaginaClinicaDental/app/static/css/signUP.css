@@ -14,11 +14,16 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(25, 43, 140, 0.91);
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.username {
     color: white;
 }
 
 .form-control {
     background: rgba(0, 0, 0, .3);
+    color: white;
     border-style: none;
     transition: 0.5s ease-in;
     outline: none;
@@ -36,7 +41,7 @@ body {
 }
 
 .ingresar {
-    background: #222A3F;
+    background: white;
     padding: 10px;
     font-size: 16px;
     font-weight: 700!important;
@@ -71,7 +76,7 @@ body {
     /* border: 2px solid white; */
     padding: 10px;
     border-radius: 10px;
-    background: rgba(0, 0, 0, .5);
+    background: white;
 }
 
 .olvide1:hover {

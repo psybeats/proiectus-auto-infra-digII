@@ -1,6 +1,8 @@
-{% extends './base.html' %}
+{% extends './body.html' %}
+{% block header %}
+<h2>{% block title %}Inicio de Sesión{% endblock %}</h2>
+{% endblock %}
 
-{% block title %}Inicio de Sesi&oacute;n{% endblock %}
 
 {% block customCSS %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
@@ -8,30 +10,32 @@
 
 {% block body %}
 
-<div class="container">
-    <div class="row justify-content-center pt-5 mt-5 m-1">
-        <div class="col-md-6 col-sm-8 col-xl-4 col-lg-5 formulario">
-            <form action="/login" class="form-signin" method="post">
+<div class="conteiner">
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-md-8 col-sm-8 col-xl-6 col-lg-5 formulario">
+            <form class="form-signup" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
-                    <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
-                    <h3 class="text-light">INICIAR SESIÓN</h3>
+                    <!--<img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">  -->
+                    <h4 class="text-light">IDENTIFICATE</h4>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
-                    <input type="email" class="form-control" placeholder="correo" minlength="6" maxlength="20" required autofocus>
+                    <label for="username">Nombre del usuario</label>
+                    <input type="text" name="username" id="username" class="form-control"
+                        placeholder="Nombre de Usuario" minlength="6" maxlength="20" required autofocus>
                 </div>
-                <div class="form-group mx-sm-4 pb-3">
-                    <input type="password" class="form-control" placeholder="Contraseña" minlength="6" maxlength="20" required autofocus>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña"
+                        minlength="6" maxlength="255" required autofocus>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
-                    <button class="w-100 btn-lg btn-primary" type="submit">Iniciar Sesión</button>
+                    <button class="w-100 btn-lg btn-primary" type="submit">INICIAR SESIÓN</button>
                 </div>
-                <div class="form-group mx-sm-4 text-right">
-                    <span class=""><a href="#" class="olvide">Olvide mi contraseña?</a></span>
+                <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('auth.register')}}">Crear usuario</a>
                 </div>
-                <div class="form-group text-center">
-                    <span><a href="/tlantisitl/register" class="olvide1">REGISTRARSE</a></span>
-                </div>
+
                 {% with messages = get_flashed_messages(with_categories=True) %}
 
                 {% if messages %}
@@ -57,6 +61,7 @@
 
                 {% endwith %}
 
+
             </form>
         </div>
     </div>
@@ -66,4 +71,3 @@
 {% endblock %}
 
 {% endblock %}
-
