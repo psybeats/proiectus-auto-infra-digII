@@ -4,7 +4,15 @@
 {% include './nav.html' %}
 <div class="container py-3">
     {% block container %}
+    <section>
+        <header>{% block header %}{% endblock %}</header>
+
+        {% for message in get_flashed_messages() %}
+        <div>{{ message }}</div>
+        {% endfor %}
+
+    </section>
+    {% block content %}{% endblock %}
     {% endblock %}
 </div>
-
 {% endblock %}

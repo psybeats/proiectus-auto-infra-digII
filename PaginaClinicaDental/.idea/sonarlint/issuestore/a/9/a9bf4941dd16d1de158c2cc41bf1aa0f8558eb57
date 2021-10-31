@@ -1,0 +1,8 @@
+
+=python:S125
+"Remove this commented out code.(ğİéÍ8’ÜÔ£Í/
+Qpython:S1481"-Remove the unused local variable "servicios".(ô½Åàüÿÿÿÿ8“ÜÔ£Í/
+Bpython:S125"Remove this commented out code.(¨Š×Ôüÿÿÿÿ8“ÜÔ£Í/
+python:S117""^Rename this local variable "costoServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(àùˆÿúÿÿÿÿ8”ÜÔ£Í/
+‚python:S117!"_Rename this local variable "nombreServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(ı°¦âûÿÿÿÿ8”ÜÔ£Í/
+Gpython:S108,")Either remove or fill this block of code.(ã‘Û¾8”ÜÔ£Í/

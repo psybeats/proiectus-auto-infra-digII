@@ -1,0 +1,17 @@
+virtualenv -p python3 env
+.\env\Scripts\activate
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirements.txt
+#pip freeze > requirements.txt
+deactivate
+
+.\env\Scripts\activate
+python .\main.py runserver
+
+----------------------------------------------------------------------
+
+pipenv install
+pipenv install --skip-lock
+pipenv run pip freeze
+pipenv shell
+python manage.py runserver 

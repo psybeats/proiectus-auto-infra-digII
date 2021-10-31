@@ -1,0 +1,97 @@
+{% extends './body.html' %}
+{% block header %}
+<h2>{% block title %}Registro de usuarios {% endblock %}</h2>
+{% endblock %}
+
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signUP.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<div class="conteiner">
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-md-8 col-sm-8 col-xl-6 col-lg-5 formulario">
+            <form class="form-signup" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group text-center pt-3">
+                    <!--<img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">  -->
+                    <h4 class="text-light">REGISTRATE</h4>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" name="username" id="username" class="form-control"
+                        placeholder="Nombre de usuario" minlength="6" maxlength="20" required autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="apellidoPAtEmpleado">Apellido Paterno</label>
+                    <input type="text" name="apellidoPAtEmpleado" id="apellidoPAtEmpleado" class="form-control"
+                        placeholder="Apellido Paterno" minlength="6" maxlength="25" required autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="apellidoMatEmpleado">Apellido Materno</label>
+                    <input type="text" name="apellidoMatEmpleado" id="apellidoMatEmpleado" class="form-control"
+                        placeholder="Apellido Materno" minlength="6" maxlength="25" required autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="cedulaProfesional">Cedula profesional</label>
+                    <input type="text" name="cedulaProfesional" id="cedulaProfesional" class="form-control"
+                        placeholder="Cedula profesional" minlength="6" maxlength="25" autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="estadoEmpleado">Estado del Empleado</label>
+                    <input type="text" name="estadoEmpleado" id="estadoEmpleado" class="form-control"
+                        placeholder="Estado del Empleado" minlength="6" maxlength="8" required autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="correoElectronico">Correo Electrónico</label>
+                    <input type="text" name="correoElectronico" id="correoElectronico" class="form-control"
+                        placeholder="Correo Electrónico" minlength="6" maxlength="150" required autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="password">Contraseña</label>S
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña"
+                        minlength="6" maxlength="255" required autofocus>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <button class="w-100 btn-lg btn-primary" type="submit">REGISTRAR</button>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('auth.login')}}">Iniciar Sesión</a>
+                </div>
+                {% with messages = get_flashed_messages(with_categories=True) %}
+
+                {% if messages %}
+                <br />
+                {% for category, message in messages %}
+                {% if category == 'warning' %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong style='font-size: 14px;'>{{ message }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% else %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong style='font-size: 14px;'>{{ message }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% endif %}
+
+                {% endwith %}
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{% block customJS %}
+<script src="{{ url_for('static', filename='js/register.js')}}"></script>
+{% endblock %}
+
+{% endblock %}
