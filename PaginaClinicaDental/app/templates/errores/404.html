@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Error 404</title>
+    {% block customCSS %}<link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">{% endblock %}
 </head>
-
 <body>
     <div style="text-align: center;">
-        <img src="{{ url_for('static', filename='img/assets/404.png')}}">
-        <h1>🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡</h1>
+        <img src="{{ url_for('static', filename='img/assets/404__.png')}}">
+        <!---<h1>🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡🤡</h1>-->
     </div>
 </body>
 

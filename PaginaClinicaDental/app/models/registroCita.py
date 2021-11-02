@@ -4,7 +4,7 @@ from datetime import datetime
 
 class RegistroCita(db.Model):
     __tablename__ = "registroCitas"
-    id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     nombrePaciente = db.Column(db.String(20))
     apellidoPatPaciente = db.Column(db.String(25))
     apellidoMatPaciente = db.Column(db.String(25))
@@ -18,6 +18,7 @@ class RegistroCita(db.Model):
     idConsultorioReg = db.Column(db.Integer, db.ForeignKey("consultorios.id"), nullable=False)
     idClinicaRegis = db.Column(db.Integer, db.ForeignKey("clinicas.id"), nullable=False)
     idEmpleRegis = db.Column(db.Integer, db.ForeignKey("empleados.id"), nullable=False)
+
 
     def __init__(self, nombrePaciente, apellidoPatPaciente, apellidoMatPaciente, edad, telefono, estado, costo, nota, fechaRegistro) -> None:
         self.nombrePaciente = nombrePaciente
