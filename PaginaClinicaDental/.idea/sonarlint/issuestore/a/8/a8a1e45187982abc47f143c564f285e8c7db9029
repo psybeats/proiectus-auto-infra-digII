@@ -1,5 +1,0 @@
-
-vpython:S117"_Rename this parameter "apellidoMatPaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾ŒÀ©
-vpython:S117"_Rename this parameter "apellidoPatPaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾ŒÀ©
-ppython:S117"YRename this parameter "fechaRegistro" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾ŒÀ©
-qpython:S117"ZRename this parameter "nombrePaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾ŒÀ©

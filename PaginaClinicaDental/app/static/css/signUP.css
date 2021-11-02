@@ -1,33 +1,54 @@
-html,
-body {
-  height: 100%;
+body, html {
+    height: 100%;
+
 }
-body {
-    background-image: url(../img/clinica-dental-recepcion.jpg);
+
+.conteiner{
+    position: relative;
+    top: -80px;
+
+}
+
+body{
+    background-image: url(../img/assets/dental-hygiene-items-copy-space.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
+a:link {
+    color: midnightblue;
+}
+a:visited{
+    color: midnightblue;
+}
+a:hover{
+    color: midnightblue;
+    font-size:19px;
+}
+a:active{
+    color: whitesmoke;
 }
 
 .formulario {
     background: rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(25, 43, 140, 0.91);
-    color: rgba(0, 0, 0, 0.1);
-}
-
-.username {
-    color: white;
+    box-shadow: none;
+    color: whitesmoke;
+    justify-content: center;
+    align-items: center;
 }
 
 .form-control {
-    background: rgba(0, 0, 0, .3);
-    color: white;
+    background: rgba(0, 0, 0, 0.1);
     border-style: none;
     transition: 0.5s ease-in;
     outline: none;
     box-shadow: none;
+    color: whitesmoke;
 }
 
 .form-control:focus {
@@ -37,51 +58,5 @@ body {
 }
 
 .form-control::placeholder {
-    color: white;
-}
-
-.ingresar {
-    background: white;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 700!important;
-    color: white;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
-    transition: 0.5s ease-in;
-}
-
-.ingresar:hover {
-    color: white;
-}
-
-.olvide {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-}
-
-.olvide:hover {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-    cursor: pointer;
-}
-
-.olvide1 {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-    font-size: 20px;
-    font-weight: 700!important;
-    /* border: 2px solid white; */
-    padding: 10px;
-    border-radius: 10px;
-    background: white;
-}
-
-.olvide1:hover {
-    color: white;
-    text-decoration-style: none;
-    text-decoration-line: none;
-    cursor: pointer;
+    color: whitesmoke;
 }

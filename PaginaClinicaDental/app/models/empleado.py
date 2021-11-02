@@ -1,14 +1,16 @@
 from app import db
 from datetime import datetime
+from flask_login import UserMixin, AnonymousUserMixin
 
 
-class Empleado(db.Model):
+class Empleado(UserMixin, AnonymousUserMixin, db.Model):
     __tablename__ = "empleados"
-    id = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False)
     apellidoPAtEmpleado = db.Column(db.String(25))
     apellidoMatEmpleado = db.Column(db.String(25))
     cedulaProfesional = db.Column(db.String(40))
+    #password = db.Column(db.String(255))
     password = db.Column(db.Text)
     correoElectronico = db.Column(db.String(150), unique=True, nullable=False)
     estadoEmpleado = db.Column(db.String(8))
@@ -16,6 +18,7 @@ class Empleado(db.Model):
     idConsultorioEmple = db.Column(db.Integer, db.ForeignKey("consultorios.id"))
     idClinicaEmpleado = db.Column(db.Integer, db.ForeignKey("clinicas.id"))
     idRolEmpleado = db.Column(db.Integer, db.ForeignKey("roles.id"))
+
 
     def __init__(self, username, apellidoPAtEmpleado, apellidoMatEmpleado, cedulaProfesional, password, correoElectronico, estadoEmpleado, creado,) -> None:
         self.username = username
