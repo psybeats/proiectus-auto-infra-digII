@@ -29,8 +29,8 @@ auth = Blueprint("auth", __name__, url_prefix="/auth")
 @auth.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+        nombreEmpleado = request.form.get("nombreEmpleado")
+        contraseña = request.form.get("contraseña")
         apellidoPAtEmpleado = request.form.get("apellidoPAtEmpleado")
         apellidoMatEmpleado = request.form.get("apellidoMatEmpleado")
         correoElectronico = request.form.get("correoElectronico")
@@ -39,18 +39,18 @@ def signup():
         creado = None
 
         user = Empleado(
-            username,
+            nombreEmpleado,
             apellidoPAtEmpleado,
             apellidoMatEmpleado,
             cedulaProfesional,
-            generate_password_hash(password , method='sha256'),
+            generate_password_hash(contraseña , method='sha256'),
             correoElectronico,
             estadoEmpleado,
             creado,
         )
 
         error = None
-        if not username:
+        if not nombreEmpleado:
             error = "Se requiere nombre de usuario"
         elif not apellidoPAtEmpleado:
             error = "Se requiere apellido paterno"
@@ -60,20 +60,20 @@ def signup():
             error = "Se requiere un correo electrónico"
         elif not estadoEmpleado:
             error = "Se requiere un estado para el empleado"
-        elif not password:
+        elif not contraseña:
             error = "Se requiere una contraseña"
         else:
             pass
             # print("Error")
 
-        user_name = Empleado.query.filter_by(username=username).first()
+        user_name = Empleado.query.filter_by(nombreEmpleado=nombreEmpleado).first()
 
         if user_name is None:
             db.session.add(user)
             db.session.commit()
             return redirect(url_for('auth.login'))
         else:
-            error = f"El usuario ya {username} esta registrado"
+            error = f"El usuario ya {nombreEmpleado} esta registrado"
         flash(error)
 
     return render_template("auth/signup.html")
@@ -83,14 +83,14 @@ def signup():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get("username")
-        password = request.form.get("password")
+        nombreEmpleado = request.form.get("nombreEmpleado")
+        contraseña = request.form.get("contraseña")
 
         error = None
 
-        user = Empleado.query.filter_by(username=username).first()
-
-        if not user or not check_password_hash(user.password, password):
+        user = Empleado.query.filter_by(nombreEmpleado=nombreEmpleado).first()
+        
+        if not user or not check_password_hash(user.contraseña, contraseña):
             flash('Please check your login password and try again.')
             return redirect(url_for('auth.login'))
 
