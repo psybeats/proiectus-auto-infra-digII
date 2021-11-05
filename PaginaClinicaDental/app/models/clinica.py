@@ -3,7 +3,7 @@ from app import db
 
 class Clinica(db.Model):
     __tablename__ = "clinicas"
-    idClinica = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     nombreClinica = db.Column(db.String(40))
     direcccion = db.Column(db.String(100))
     telefono = db.Column(db.String(25))

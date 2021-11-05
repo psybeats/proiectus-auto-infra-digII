@@ -5,7 +5,7 @@ class Config:
     TESTING = False
     # Configuración de la DB
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = ("mysql+pymysql://root:root@localhost:3306/clinicaDental")
+    SQLALCHEMY_DATABASE_URI = ("mysql+pymysql://root:root@localhost:3306/clinica_dental")
 
 
 class ProductionConfig(Config):

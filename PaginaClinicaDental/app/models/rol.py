@@ -3,7 +3,7 @@ from app import db
 
 class Rol(db.Model):
     __tablename__ = "roles"
-    idRol = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     tipoRol = db.Column(db.String(20))
 
     def __init__(self, tipoRol) -> None:

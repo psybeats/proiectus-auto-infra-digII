@@ -3,7 +3,7 @@ from app import db
 
 class Servicio(db.Model):
     __tablename__ = "servicios"
-    idServicio = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     nombreServicio = db.Column(db.String(20))
     costoServicio = db.Column(db.Float)
 
