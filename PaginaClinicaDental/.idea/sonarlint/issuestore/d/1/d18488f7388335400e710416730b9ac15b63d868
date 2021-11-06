@@ -1,0 +1,5 @@
+
+upython:S117
+"YRename this parameter "costoServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(Âıßûÿÿÿÿ
+vpython:S117
+"ZRename this parameter "nombreServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(Âıßûÿÿÿÿ

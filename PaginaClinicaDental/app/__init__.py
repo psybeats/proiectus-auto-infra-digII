@@ -33,22 +33,16 @@ from app.models.empleado import Empleado
 def load_user(username_id):
     return Empleado.query.get(username_id)
     #return Empleado.query.filter_by(username_id=id).first()
-    #return Empleado.query.filter_by(username_id=id).first()
-
-#@login_manager_app.user_loaders
-#def load_user(id):
-    #return Empleado.obtener_por_id(db, id)
-    #return Empleado.query.filter_by(user_id=id).first()
 
 
 # Excepciones u errores
 def pagina_no_encontrada(error):
-    return render_template("errores/404.html"), 404
+    return render_template("errores/404.html", mensaje=format(Exception)), 404
 
 
 def pagina_no_autorizada(error):
-    return render_template("errores/error.html"), 401
-    #return redirect(url_for("auth.login"))
+    #return render_template("errores/error.html"), 401
+    return redirect(url_for("auth.login", mensaje=format(Exception)), 401)
     #return redirect(url_for("login"))
 
 

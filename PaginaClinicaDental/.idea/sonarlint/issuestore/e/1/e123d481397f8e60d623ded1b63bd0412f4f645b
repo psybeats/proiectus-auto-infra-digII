@@ -1,9 +1,12 @@
 
-6python:S125"Remove this commented out code.(ֹÞûן
-;python:S125"Remove this commented out code.(»˜‏‎ÿÿÿÿ
-6python:S125"Remove this commented out code.(–־מ
-6python:S125"Remove this commented out code.(ÿ‚½°
-zpython:S117)"^Rename this local variable "costoServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(אשˆÿתÿÿÿÿ
-{python:S117("_Rename this local variable "nombreServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(‎°¦גûÿÿÿÿ
+_python:S2208"GImport only needed names or import the module and then use its members.(»¼פ
+6python:S125"Remove this commented out code.(ֹÞûן
+@python:S108$")Either remove or fill this block of code.(ד‘Û¾
+;python:S125&"Remove this commented out code.(םüûûÿÿÿÿ
 @python:S1084")Either remove or fill this block of code.(ד‘Û¾
-;python:S125<"Remove this commented out code.(׀ח˜ÿÿÿÿÿ
+Bpython:S1255"Remove this commented out code.(ûשÿ­ûÿÿÿÿ8נצßת־/
+zpython:S117>"^Rename this local variable "costoServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(אשˆÿתÿÿÿÿ
+{python:S117="_Rename this local variable "nombreServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(‎°¦גûÿÿÿÿ
+;python:S125?"Remove this commented out code.(¢׀ףײüÿÿÿÿ
+@python:S108I")Either remove or fill this block of code.(ד‘Û¾
+;python:S125R"Remove this commented out code.(׀ח˜ÿÿÿÿÿ

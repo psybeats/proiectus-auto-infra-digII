@@ -6,7 +6,7 @@ from flask_login import UserMixin, AnonymousUserMixin
 class Empleado(UserMixin, AnonymousUserMixin, db.Model):
     __tablename__ = "empleados"
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
     apellidoPAtEmpleado = db.Column(db.String(25))
     apellidoMatEmpleado = db.Column(db.String(25))
     cedulaProfesional = db.Column(db.String(40))

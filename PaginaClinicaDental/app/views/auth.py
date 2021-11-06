@@ -31,6 +31,7 @@ def signup():
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
+        passwordV = request.form.get("passwordV")
         apellidoPAtEmpleado = request.form.get("apellidoPAtEmpleado")
         apellidoMatEmpleado = request.form.get("apellidoMatEmpleado")
         correoElectronico = request.form.get("correoElectronico")
@@ -38,45 +39,40 @@ def signup():
         estadoEmpleado = request.form.get("estadoEmpleado")
         creado = None
 
-        user = Empleado(
+        email_exists = Empleado.query.filter_by(correoElectronico=correoElectronico).first()
+        username_exists = Empleado.query.filter_by(username=username).first()
+
+        if email_exists:
+            flash('El email utilizado ya esta registrado.', category='error')
+        elif username_exists:
+            flash('El nombre de usuario no esta disponible.', category='error')
+        elif password != passwordV:
+            flash('Las contraseñas no coinciden!', category='error')
+        elif len(username) < 6:
+            flash('El nombre de usuario es muy corto.', category='error')
+        elif len(password) < 6:
+            flash('La contraseña es muy corta.', category='error')
+        elif len(correoElectronico) < 6:
+            flash("El correo electrónico es invalido.", category='error')
+
+        new_user = Empleado(
             username,
             apellidoPAtEmpleado,
             apellidoMatEmpleado,
             cedulaProfesional,
-            generate_password_hash(password , method='sha256'),
+            generate_password_hash(password, method='sha256'),
             correoElectronico,
             estadoEmpleado,
             creado,
         )
-
-        error = None
-        if not username:
-            error = "Se requiere nombre de usuario"
-        elif not apellidoPAtEmpleado:
-            error = "Se requiere apellido paterno"
-        elif not apellidoMatEmpleado:
-            error = "Se requiere apellido materno"
-        elif not correoElectronico:
-            error = "Se requiere un correo electrónico"
-        elif not estadoEmpleado:
-            error = "Se requiere un estado para el empleado"
-        elif not password:
-            error = "Se requiere una contraseña"
-        else:
-            pass
-            # print("Error")
-
-        user_name = Empleado.query.filter_by(username=username).first()
-
-        if user_name is None:
-            db.session.add(user)
+        if new_user is None:
+            db.session.add(new_user)
             db.session.commit()
+            login_user(new_user, remember=True)
+            flash('¡Usuario creado!')
             return redirect(url_for('auth.login'))
-        else:
-            error = f"El usuario ya {username} esta registrado"
-        flash(error)
 
-    return render_template("auth/signup.html")
+    return render_template("auth/signup.html", user=current_user)
 
 
 # /auth/login
@@ -86,27 +82,27 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
 
-        error = None
-
         user = Empleado.query.filter_by(username=username).first()
+        if user:
+            if check_password_hash(user.password, password):
+                flash(LOGGED_IN, category='success')
+                login_user(user, remember=True)
+                return redirect(url_for('DentalShield.index'))
+                #return redirect(url_for('auth.login'))
+            else:
+                flash(LOGIN_PASSINVALIDA, category='error')
+        else:
+            flash(LOGIN_USERINVALIDO, category='error')
 
-        if not user or not check_password_hash(user.password, password):
-            flash('Please check your login password and try again.')
-            return redirect(url_for('auth.login'))
-
-        login_user(user)
-    #return redirect(url_for('DentalShield.perfil'))
-    #return render_template("clinica/index.html")
-    return render_template("auth/login.html")
-    #return render_template("DentalShield.index")
+    flash(MENSAJE_BIENVENIDA, 'success')
+    return render_template("auth/login.html", user=current_user)
 
 
 # Para cerrar sesión
 @auth.route('/logout')
 @login_required
 def logout():
-    #session.clear()
     logout_user()
-    flash("Sesión cerrada exitosamente!")
+    flash(LOGOUT, 'success')
     return redirect(url_for('DentalShield.index'))
 

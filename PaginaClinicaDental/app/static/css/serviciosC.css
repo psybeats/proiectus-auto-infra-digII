@@ -1,0 +1,62 @@
+body, html {
+    height: 100%;
+
+}
+
+.conteiner{
+    position: relative;
+    top: -80px;
+
+}
+
+body{
+    background-image: url(../img/assets/eco-cleaning-products-skincare.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
+a:link {
+    color: midnightblue;
+}
+a:visited{
+    color: midnightblue;
+}
+a:hover{
+    color: midnightblue;
+    font-size:19px;
+}
+a:active{
+    color: whitesmoke;
+}
+
+.formulario {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: none;
+    color: whitesmoke;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    background: rgba(0, 0, 0, 0.1);
+    border-style: none;
+    transition: 0.5s ease-in;
+    outline: none;
+    box-shadow: none;
+    color: whitesmoke;
+}
+
+.form-control:focus {
+    background: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: whitesmoke;
+}
