@@ -18,6 +18,18 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
             </li>
+            <span class="navbar-text">
+                <strong>{{ current_user.username }}</strong>({{ current_user.correoElectronico }})
+            </span>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('DentalShield.perfil') }}">Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('DentalShield.servicios') }}">Crear Servicios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('DentalShield.verservicios') }}">Listado de Servicios</a>
+            </li>
         </ul>
     </div>
 </nav>

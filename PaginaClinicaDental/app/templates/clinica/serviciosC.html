@@ -1,0 +1,42 @@
+{% extends './body.html' %}
+{% block header %}
+<h2>{% block title %}Listado de Servicios{% endblock %}</h2>
+{% endblock %}
+
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/serviciosC.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<div class="conteiner">
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-md-8 col-sm-8 col-xl-6 col-lg-5 formulario">
+            <form class="form-signup" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group text-center pt-3">
+                    <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
+                    <h4 class="text-light">LISTADO DE SERVICIOS</h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                        <h1>{{ servicios }}</h1>
+                    </div>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('DentalShield.servicios')}}">Crear Servicios</a>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('DentalShield.index')}}">INDEX</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% block customJS %}
+<script src="{{ url_for('static', filename='js/login.js')}}"></script>
+{% endblock %}
+
+{% endblock %}

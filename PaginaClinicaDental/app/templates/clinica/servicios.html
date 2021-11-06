@@ -1,11 +1,11 @@
 {% extends './body.html' %}
 {% block header %}
-<h2>{% block title %}Inicio de Sesión{% endblock %}</h2>
+<h2>{% block title %}Registrar Servicios{% endblock %}</h2>
 {% endblock %}
 
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -33,8 +33,12 @@
                     <button class="w-100 btn-lg btn-primary" type="submit">AGREGAR SERVICIO</button>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('DentalShield.verservicios')}}">Ver Servicios</a>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
                     <a href="{{url_for('DentalShield.index')}}">INDEX</a>
                 </div>
+
 
             </form>
         </div>

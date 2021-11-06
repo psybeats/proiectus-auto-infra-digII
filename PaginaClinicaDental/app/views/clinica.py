@@ -3,9 +3,17 @@ from flask import Flask , Blueprint, flash, g, redirect, render_template, reques
 from werkzeug.exceptions import abort
 
 from flask_login import login_required, current_user
+from app.mensajesflash import *
+
 
 from app.models.empleado import Empleado
+from app.models.rol import Rol
 from app.models.servicio import Servicio
+from app.models.registroCita import RegistroCita
+from app.models.cancelacion import Cancelacion
+from app.models.pago import Pago
+from app.models.consultorio import Consultorio
+from app.models.clinica import Clinica
 
 
 from app import db
@@ -18,18 +26,31 @@ dentalShield = Blueprint("DentalShield", __name__,)
 # Inicio del sistema web
 @dentalShield.route("/")
 def index():
-    #servicios = Servicio.query.all()
-    #db.session.commit()
-    #return render_template('clinica/index.html', servicios = servicios)
-    return render_template('clinica/index.html')
-    #return redirect(url_for("auth.login"))
+    try:
+        return render_template('clinica/index.html', user=current_user)
+    except Exception as ex:
+        return render_template('errores/error.html', mensaje=format(ex))
+    else:
+        return redirect(url_for('auth.login'))
+    finally:
+        pass
+
+    #return render_template('clinica/index.html', user=current_user)
 
 
-@dentalShield.route("/perfil")
+@dentalShield.route("/DentalShield/perfil")
 @login_required
 def perfil():
-    #return render_template('clinica/perfil.html', name=current_user.name)
-    return render_template('clinica/perfil.html', name=g.user.id)
+    if current_user.is_authenticated:
+        try:
+            return render_template('clinica/perfil.html', user=current_user)
+        except Exception as ex:
+            return render_template('errores/error.html', mensaje=format(ex))
+        else:
+            return redirect(url_for('auth.login'))
+        finally:
+            pass
+    #return render_template('clinica/perfil.html', user=current_user)
 
 
 # Registrar un servicio
@@ -39,11 +60,11 @@ def servicios():
     if request.method == "POST":
         nombreServicio = request.form.get("nombreServicio")
         costoServicio = request.form.get("costoServicio")
+        #user = current_user
 
-        servicio = Servicio(g.user.id, nombreServicio, costoServicio)
+        servicio = Servicio(nombreServicio, costoServicio)
 
         error = None
-        correct = 'Servicio creado satisfactoriamente 😎'
         if not nombreServicio:
             error = "Se requiere un nombre del servicio"
         elif not costoServicio:
@@ -57,10 +78,18 @@ def servicios():
         else:
             db.session.add(servicio)
             db.session.commit()
+            flash('Servicio creado!', category='success')
             #return redirect(url_for("DentalShield.index"))
             return redirect(url_for("DentalShield.servicios"))
 
         flash(error)
-        flash(correct)
+        #flash(correct)
 
-    return render_template("clinica/servicios.html")
+    return render_template("clinica/servicios.html", user=current_user)
+
+
+@dentalShield.route("/DentalShield/servicios-creados")
+@login_required
+def verservicios():
+    servicios = Servicio.query.all()
+    return render_template("clinica/serviciosC.html", user=current_user, servicios=servicios)
