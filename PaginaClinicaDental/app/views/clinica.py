@@ -27,6 +27,7 @@ dentalShield = Blueprint("DentalShield", __name__,)
 @dentalShield.route("/")
 def index():
     try:
+        flash(MENSAJE_USER, category='success')
         return render_template('clinica/index.html', user=current_user)
     except Exception as ex:
         return render_template('errores/error.html', mensaje=format(ex))
@@ -43,6 +44,7 @@ def index():
 def perfil():
     if current_user.is_authenticated:
         try:
+            flash(MENSAJE_USER, category='success')
             return render_template('clinica/perfil.html', user=current_user)
         except Exception as ex:
             return render_template('errores/error.html', mensaje=format(ex))
@@ -60,7 +62,6 @@ def servicios():
     if request.method == "POST":
         nombreServicio = request.form.get("nombreServicio")
         costoServicio = request.form.get("costoServicio")
-        #user = current_user
 
         servicio = Servicio(nombreServicio, costoServicio)
 
@@ -70,26 +71,23 @@ def servicios():
         elif not costoServicio:
             error = "Se requiere un costo de servicio"
         else:
-            pass
-            # print("Error")
+            flash(NOTSERVICES, category='error')
 
         if error is not None:
-            flash(error)
+            flash(error, category='error')
         else:
             db.session.add(servicio)
             db.session.commit()
-            flash('Servicio creado!', category='success')
+            flash(MENSAJE, category='success')
             #return redirect(url_for("DentalShield.index"))
             return redirect(url_for("DentalShield.servicios"))
-
-        flash(error)
-        #flash(correct)
 
     return render_template("clinica/servicios.html", user=current_user)
 
 
 @dentalShield.route("/DentalShield/servicios-creados")
 @login_required
-def verservicios():
+def viewservicios():
     servicios = Servicio.query.all()
+    flash(MENSAJE, category='success')
     return render_template("clinica/serviciosC.html", user=current_user, servicios=servicios)

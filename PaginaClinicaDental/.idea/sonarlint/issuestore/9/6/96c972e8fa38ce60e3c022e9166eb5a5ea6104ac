@@ -1,7 +1,0 @@
-
-6python:S125"Remove this commented out code.(Î­זב
-{python:S117"_Rename this parameter "apellidoMatEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(שפה¤תÿÿÿÿ
-{python:S117"_Rename this parameter "apellidoPAtEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(שפה¤תÿÿÿÿ
-ypython:S117"]Rename this parameter "cedulaProfesional" to match the regular expression ^[_a-z][a-z0-9_]*$.(שפה¤תÿÿÿÿ
-ypython:S117"]Rename this parameter "correoElectronico" to match the regular expression ^[_a-z][a-z0-9_]*$.(שפה¤תÿÿÿÿ
-vpython:S117"ZRename this parameter "estadoEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(שפה¤תÿÿÿÿ

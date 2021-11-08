@@ -1,14 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    
-</body>
-</html>
+{% extends './body.html' %}
+{% block header %}
+<h2>{% block title %}Agendar Cita{% endblock %}</h2>
+{% endblock %}
+
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/citas.css')}}">
+{% endblock %}
+
+{% block body %}
+
+<div class="conteiner">
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="col-md-8 col-sm-8 col-xl-6 col-lg-5 formulario">
+            <form class="form-signup" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group text-center pt-3">
+                    <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
+                    <h4 class="text-light">AGENDAR CITA</h4>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="nombreServicio">Selecionar servicios Servicio</label>
+                    <input type="text" name="nombreServicio" id="nombreServicio" class="form-control"
+                        placeholder="Nombre del Servicio" minlength="6" maxlength="20" required>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="costoServicio">Costo</label>
+                    <input type="text" name="costoServicio" id="costoServicio" class="form-control" placeholder="Costo"
+                        minlength="6" maxlength="255" required>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <button class="w-100 btn-lg btn-primary" type="submit">AGREGAR CITA</button>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('DentalShield.index')}}">INDEX</a>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{% block customJS %}
+<script src="{{ url_for('static', filename='js/citas.js')}}"></script>
+{% endblock %}
+
+{% endblock %}
