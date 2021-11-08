@@ -21,7 +21,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        <h1>{{ servicios }}</h1>
+                        <h1>{{ current_user.username }} {{ servicios }}</h1>
                     </div>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
@@ -36,7 +36,7 @@
     </div>
 </div>
 {% block customJS %}
-<script src="{{ url_for('static', filename='js/login.js')}}"></script>
+<script src="{{ url_for('static', filename='js/servicios.js')}}"></script>
 {% endblock %}
 
 {% endblock %}

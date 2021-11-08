@@ -33,7 +33,7 @@
                     <button class="w-100 btn-lg btn-primary" type="submit">AGREGAR SERVICIO</button>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('DentalShield.verservicios')}}">Ver Servicios</a>
+                    <a href="{{url_for('DentalShield.viewservicios')}}">Ver Servicios</a>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
                     <a href="{{url_for('DentalShield.index')}}">INDEX</a>
@@ -45,7 +45,7 @@
     </div>
 </div>
 {% block customJS %}
-<script src="{{ url_for('static', filename='js/login.js')}}"></script>
+<script src="{{ url_for('static', filename='js/servicios.js')}}"></script>
 {% endblock %}
 
 {% endblock %}

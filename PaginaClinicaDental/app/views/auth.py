@@ -65,12 +65,12 @@ def signup():
             estadoEmpleado,
             creado,
         )
-        if new_user is None:
-            db.session.add(new_user)
-            db.session.commit()
-            login_user(new_user, remember=True)
-            flash('¡Usuario creado!')
-            return redirect(url_for('auth.login'))
+
+        db.session.add(new_user)
+        db.session.commit()
+        login_user(new_user, remember=True)
+        flash('¡Usuario creado!', category='success')
+        return redirect(url_for('auth.login'))
 
     return render_template("auth/signup.html", user=current_user)
 
@@ -94,7 +94,7 @@ def login():
         else:
             flash(LOGIN_USERINVALIDO, category='error')
 
-    flash(MENSAJE_BIENVENIDA, 'success')
+    flash(MENSAJE_BIENVENIDA, category='success')
     return render_template("auth/login.html", user=current_user)
 
 
@@ -103,6 +103,6 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash(LOGOUT, 'success')
+    flash(LOGOUT, category='success')
     return redirect(url_for('DentalShield.index'))
 
