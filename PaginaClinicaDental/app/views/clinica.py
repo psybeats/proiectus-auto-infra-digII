@@ -10,7 +10,6 @@ from app.models.empleado import Empleado
 from app.models.rol import Rol
 from app.models.servicio import Servicio
 from app.models.registroCita import RegistroCita
-from app.models.cancelacion import Cancelacion
 from app.models.pago import Pago
 from app.models.consultorio import Consultorio
 from app.models.clinica import Clinica
@@ -91,3 +90,48 @@ def viewservicios():
     servicios = Servicio.query.all()
     flash(MENSAJE, category='success')
     return render_template("clinica/serviciosC.html", user=current_user, servicios=servicios)
+
+#Registro de Citas
+@dentalShield.route("/DentalShield/citas", methods=["GET", "POST"])
+def citas():
+    posts = Servicio.query.all()
+    clinica = Clinica.query.all()
+    if request.method == "POST":
+        nombrePaciente = request.form.get("nombrePaciente")
+        apellidoPatPaciente = request.form.get("apellidoPatPaciente")
+        apellidoMatPaciente = request.form.get("apellidoMatPaciente")
+        edad = request.form.get("edad")
+        estatus = "Activo"
+        telefono = request.form.get("telefono")
+        nota = request.form.get("nota")
+        fechaRegistro = request.form.get("fechaRegistro")
+        fechaCancelacion = request.form.get("fechaCancelacion")
+        idServicioRegis = request.form.get("nombreServicio")
+        idClinicaRegis = request.form.get("idClinicaRegis")
+        
+
+
+        registro = RegistroCita(nombrePaciente, apellidoPatPaciente, apellidoMatPaciente, edad, estatus, telefono, nota, fechaRegistro, fechaCancelacion, idServicioRegis, idClinicaRegis)
+
+        error = None
+        if not nombrePaciente:
+            error = "Se requiere un nombre del paciente"
+        elif not apellidoPatPaciente:
+            error = "Se requiere el apellido paterno del paciente"
+        elif not apellidoMatPaciente:
+            error = "Se requiere el apellido materno del paciente"
+        elif not edad:
+            error = "Se requiere la edad del paciente"
+        elif not telefono:
+            error = "Se requiere el teléfono del paciente"
+        elif not fechaRegistro:
+            error = "Se requiere una fecha de registro"
+
+        if error is not None:
+            flash(error)
+        else:
+            db.session.add(registro)
+            db.session.commit()
+            return redirect(url_for("DentalShield.citas"))
+
+    return render_template("clinica/citas.html", posts=posts, clinica=clinica)
