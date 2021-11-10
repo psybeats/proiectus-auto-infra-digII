@@ -5,11 +5,10 @@ from flask_login import UserMixin, AnonymousUserMixin
 
 class Empleado(UserMixin, AnonymousUserMixin, db.Model):
     __tablename__ = "empleados"
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     username = db.Column(db.String(20), unique=True, nullable=False)
     apellidoPAtEmpleado = db.Column(db.String(25))
     apellidoMatEmpleado = db.Column(db.String(25))
-    cedulaProfesional = db.Column(db.String(40))
     #password = db.Column(db.String(255))
     password = db.Column(db.Text)
     correoElectronico = db.Column(db.String(150), unique=True, nullable=False)
@@ -20,11 +19,10 @@ class Empleado(UserMixin, AnonymousUserMixin, db.Model):
     idRolEmpleado = db.Column(db.Integer, db.ForeignKey("roles.id"))
 
 
-    def __init__(self, username, apellidoPAtEmpleado, apellidoMatEmpleado, cedulaProfesional, password, correoElectronico, estadoEmpleado, creado,) -> None:
+    def __init__(self, username, apellidoPAtEmpleado, apellidoMatEmpleado, password, correoElectronico, estadoEmpleado, creado,) -> None:
         self.username = username
         self.apellidoPAtEmpleado = apellidoPAtEmpleado
         self.apellidoMatEmpleado = apellidoMatEmpleado
-        self.cedulaProfesional = cedulaProfesional
         self.password = password
         self.correoElectronico = correoElectronico
         self.estadoEmpleado = estadoEmpleado

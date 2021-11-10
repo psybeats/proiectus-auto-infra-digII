@@ -1,11 +1,11 @@
 {% extends './body.html' %}
 {% block header %}
-<h2>{% block title %}Agendar Cita{% endblock %}</h2>
+<h2>{% block title %}Registro de Cita {% endblock %}</h2>
 {% endblock %}
 
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/citas.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signUP.css')}}">
 {% endblock %}
 
 {% block body %}
@@ -17,32 +17,74 @@
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
                     <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
-                    <h4 class="text-light">AGENDAR CITA</h4>
+                    <h4 class="text-light">REGISTRA UNA CITA</h4>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
-                    <label for="nombreServicio">Selecionar servicios Servicio</label>
-                    <input type="text" name="nombreServicio" id="nombreServicio" class="form-control"
-                        placeholder="Nombre del Servicio" minlength="6" maxlength="20" required>
+                    <label for="nombrePaciente">Nombre del paciente</label>
+                    <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control"
+                    placeholder="Nombre(s)" maxlength="20" required>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
-                    <label for="costoServicio">Costo</label>
-                    <input type="text" name="costoServicio" id="costoServicio" class="form-control" placeholder="Costo"
-                        minlength="6" maxlength="255" required>
+                    <label for="apellidoPatPaciente">Apellido Paterno</label>
+                    <input type="text" name="apellidoPatPaciente" id="apellidoPatPaciente" class="form-control"
+                    placeholder="Apellido Paterno" maxlength="25" required>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="apellidoMatPaciente">Apellido Materno</label>
+                    <input type="text" name="apellidoMatPaciente" id="apellidoMatPaciente" class="form-control"
+                    placeholder="Apellido Materno" maxlength="25" required>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="edad">Edad</label>
+                    <input type="text" name="edad" id="edad" class="form-control"
+                    placeholder="23" maxlength="25">
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" name="telefono" id="telefono" class="form-control"
+                    placeholder="7353901190" maxlength="15" required>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="nota">Nota</label>
+                    <input type="text" name="nota" id="nota" class="form-control"
+                    placeholder="Escriba alguna información de importancia" minlength="6" maxlength="150" required>
+                </div>
+
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="fechaRegistro">Fecha de Cita</label>
+                    <input type="datetime-local" name="fechaRegistro" id="fechaRegistro" class="form-control" maxlength="255" required>
+                </div>
+
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="nombreServicio">Tratamientos Dentales</label>
+                    <select name="nombreServicio" id="nombreServicio" class="custom-select">
+                        {% for post in posts %}
+                        <option value="{{ post.id }}">{{ post.nombreServicio }} costo: ${{ post.costoServicio }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="idClinicaRegis">Clinicas</label>
+                    <select name="idClinicaRegis" id="idClinicaRegis" class="custom-select">
+                        {% for post1 in clinica %}
+                        <option value="{{ post1.id }}">{{ post1.nombreClinica }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
-                    <button class="w-100 btn-lg btn-primary" type="submit">AGREGAR CITA</button>
+                    <button class="w-100 btn-lg btn-primary" type="submit">REGISTRAR CITA</button>
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('auth.login')}}">Iniciar Sesión</a>
+                    <a>|</a>
                     <a href="{{url_for('DentalShield.index')}}">INDEX</a>
                 </div>
-
-
             </form>
         </div>
     </div>
 </div>
 {% block customJS %}
-<script src="{{ url_for('static', filename='js/citas.js')}}"></script>
+<script src="{{ url_for('static', filename='js/register.js')}}"></script>
 {% endblock %}
 
 {% endblock %}

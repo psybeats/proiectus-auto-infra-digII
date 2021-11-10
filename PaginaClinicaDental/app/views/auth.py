@@ -5,7 +5,6 @@ from app.models.empleado import Empleado
 from app.models.rol import Rol
 from app.models.servicio import Servicio
 from app.models.registroCita import RegistroCita
-from app.models.cancelacion import Cancelacion
 from app.models.pago import Pago
 from app.models.consultorio import Consultorio
 from app.models.clinica import Clinica
@@ -35,7 +34,6 @@ def signup():
         apellidoPAtEmpleado = request.form.get("apellidoPAtEmpleado")
         apellidoMatEmpleado = request.form.get("apellidoMatEmpleado")
         correoElectronico = request.form.get("correoElectronico")
-        cedulaProfesional = request.form.get("cedulaProfesional")
         estadoEmpleado = request.form.get("estadoEmpleado")
         creado = None
 
@@ -59,7 +57,6 @@ def signup():
             username,
             apellidoPAtEmpleado,
             apellidoMatEmpleado,
-            cedulaProfesional,
             generate_password_hash(password, method='sha256'),
             correoElectronico,
             estadoEmpleado,
@@ -105,4 +102,3 @@ def logout():
     logout_user()
     flash(LOGOUT, category='success')
     return redirect(url_for('DentalShield.index'))
-
