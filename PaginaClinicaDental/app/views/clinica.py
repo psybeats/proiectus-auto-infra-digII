@@ -82,7 +82,7 @@ def servicios():
             return redirect(url_for("DentalShield.servicios"))
 
     return render_template("clinica/servicios.html", user=current_user)
-
+ 
 
 @dentalShield.route("/DentalShield/servicios-creados")
 @login_required
