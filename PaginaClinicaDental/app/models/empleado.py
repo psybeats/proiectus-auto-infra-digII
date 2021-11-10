@@ -19,12 +19,15 @@ class Empleado(UserMixin, AnonymousUserMixin, db.Model):
     idRolEmpleado = db.Column(db.Integer, db.ForeignKey("roles.id"))
 
 
-    def __init__(self, username, apellidoPAtEmpleado, apellidoMatEmpleado, password, correoElectronico, estadoEmpleado, creado,) -> None:
+    def __init__(self, username, apellidoPAtEmpleado, apellidoMatEmpleado, password, correoElectronico, idConsultorioEmple, idClinicaEmpleado, idRolEmpleado, estadoEmpleado, creado,) -> None:
         self.username = username
         self.apellidoPAtEmpleado = apellidoPAtEmpleado
         self.apellidoMatEmpleado = apellidoMatEmpleado
         self.password = password
         self.correoElectronico = correoElectronico
+        self.idConsultorioEmple = idConsultorioEmple
+        self.idClinicaEmpleado = idClinicaEmpleado
+        self.idRolEmpleado = idRolEmpleado
         self.estadoEmpleado = estadoEmpleado
         self.creado = creado
 

@@ -26,7 +26,11 @@ auth = Blueprint("auth", __name__, url_prefix="/auth")
 
 # /auth/register
 @auth.route("/signup", methods=["GET", "POST"])
+@login_required
 def signup():
+    consult = Consultorio.query.all()
+    clinic =  Clinica.query.all()
+    rol = Rol.query.all()
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -34,6 +38,9 @@ def signup():
         apellidoPAtEmpleado = request.form.get("apellidoPAtEmpleado")
         apellidoMatEmpleado = request.form.get("apellidoMatEmpleado")
         correoElectronico = request.form.get("correoElectronico")
+        idConsultorioEmple = request.form.get("idConsultorioEmple")
+        idClinicaEmpleado = request.form.get("idClinicaEmpleado")
+        tipoRol = request.form.get("tipoRol")
         estadoEmpleado = request.form.get("estadoEmpleado")
         creado = None
 
@@ -46,7 +53,7 @@ def signup():
             flash('El nombre de usuario no esta disponible.', category='error')
         elif password != passwordV:
             flash('Las contraseñas no coinciden!', category='error')
-        elif len(username) < 6:
+        elif len(username) < 3:
             flash('El nombre de usuario es muy corto.', category='error')
         elif len(password) < 6:
             flash('La contraseña es muy corta.', category='error')
@@ -59,6 +66,9 @@ def signup():
             apellidoMatEmpleado,
             generate_password_hash(password, method='sha256'),
             correoElectronico,
+            idConsultorioEmple,
+            idClinicaEmpleado,
+            tipoRol,
             estadoEmpleado,
             creado,
         )
@@ -69,7 +79,7 @@ def signup():
         flash('¡Usuario creado!', category='success')
         return redirect(url_for('auth.login'))
 
-    return render_template("auth/signup.html", user=current_user)
+    return render_template("auth/signup.html", user=current_user, consult=consult, clinic=clinic, rol=rol)
 
 
 # /auth/login

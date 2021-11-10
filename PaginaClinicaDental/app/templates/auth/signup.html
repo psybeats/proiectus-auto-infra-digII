@@ -22,17 +22,17 @@
                 <div class="form-group mx-sm-4 pt-3">
                     <label for="username">Nombre del usuario</label>
                     <input type="text" name="username" id="username" class="form-control"
-                           placeholder="Nombre(s)" minlength="6" maxlength="20" required>
+                           placeholder="Nombre(s)" minlength="3" maxlength="20" required>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
                     <label for="apellidoPAtEmpleado">Apellido Paterno</label>
                     <input type="text" name="apellidoPAtEmpleado" id="apellidoPAtEmpleado" class="form-control"
-                           placeholder="Apellido Paterno" minlength="6" maxlength="25" required>
+                           placeholder="Apellido Paterno" minlength="3" maxlength="25" required>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
                     <label for="apellidoMatEmpleado">Apellido Materno</label>
                     <input type="text" name="apellidoMatEmpleado" id="apellidoMatEmpleado" class="form-control"
-                           placeholder="Apellido Materno" minlength="6" maxlength="25" required>
+                           placeholder="Apellido Materno" minlength="3" maxlength="25" required>
                 </div>
                 <div class="form-group mx-sm-4 pt-3">
                     <label for="estadoEmpleado">Estado del Empleado</label>
@@ -44,6 +44,33 @@
                     <input type="text" name="correoElectronico" id="correoElectronico" class="form-control"
                            placeholder="Ingrese el correo electrónico" minlength="6" maxlength="150" required>
                 </div>
+
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="idConsultorioEmple">Elije el Consultorio Asignado</label>
+                    <select name="idConsultorioEmple" id="idConsultorioEmple" class="custom-select">
+                        {% for post in consult %}
+                        <option value="{{ post.id }}">Consultorio: {{ post.id }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="idClinicaEmpleado">Elije la Clinica a la que Pertenece</label>
+                    <select name="idClinicaEmpleado" id="idClinicaEmpleado" class="custom-select">
+                        {% for post1 in clinic %}
+                        <option value="{{ post1.id }}"> {{ post1.nombreClinica }} Dirección: {{ post1.direcccion }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group mx-sm-4 pt-3">
+                    <label for="tipoRol">Elije el Rol Asignado</label>
+                    <select name="tipoRol" id="tipoRol" class="custom-select">
+                        {% for post2 in rol %}
+                        <option value="{{ post2.id }}">{{ post2.tipoRol }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+
                 <div class="form-group mx-sm-4 pt-3">
                     <label for="password">Contraseña</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="Ingrese la contraseña"
