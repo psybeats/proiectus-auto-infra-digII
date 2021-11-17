@@ -1,4 +1,5 @@
 from flask import Flask , Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
+from flask_sqlalchemy import SQLAlchemy
 
 from werkzeug.exceptions import abort
 
@@ -16,6 +17,7 @@ from app.models.clinica import Clinica
 
 
 from app import db
+from sqlalchemy.orm import joinedload
 
 
 # lazuli = Blueprint("lazuli", __name__, url_prefix="/clinica")
@@ -36,6 +38,11 @@ def index():
         pass
 
     #return render_template('clinica/index.html', user=current_user)
+
+#about
+@dentalShield.route("/DentalShield/about")
+def about():
+    return render_template("clinica/about.html", user=current_user)
 
 
 @dentalShield.route("/DentalShield/perfil")
@@ -101,7 +108,7 @@ def citas():
         apellidoPatPaciente = request.form.get("apellidoPatPaciente")
         apellidoMatPaciente = request.form.get("apellidoMatPaciente")
         edad = request.form.get("edad")
-        estatus = "Activo"
+        estatus = "Cita Activa"
         telefono = request.form.get("telefono")
         nota = request.form.get("nota")
         fechaRegistro = request.form.get("fechaRegistro")
@@ -134,4 +141,41 @@ def citas():
             db.session.commit()
             return redirect(url_for("DentalShield.citas"))
 
-    return render_template("clinica/citas.html", posts=posts, clinica=clinica)
+    return render_template("clinica/citas.html", posts=posts, clinica=clinica, user=current_user)
+
+
+#Update Registro Citas
+@dentalShield.route("/DentalShield/updatecitas/<int:id>" , methods=["GET", "POST"])
+@login_required
+def updatecitas(id):
+    ucita =db.session.query(RegistroCita).filter(RegistroCita.id == id).first()
+    
+
+    if request.method == "POST":
+        updatestatus = request.form["estatus"]
+        fechacan = request.form["fechaCancelacion"]
+
+        ucita.estatus = updatestatus
+        ucita.fechaCancelacion = fechacan
+
+        db.session.add(ucita)
+        db.session.commit()
+        return redirect(url_for("DentalShield.viewcitas"))
+
+    return render_template("clinica/updatecitas.html", user=current_user, ucita=ucita)
+
+
+
+#Citas Registradas
+@dentalShield.route("/DentalShield/citas-registradas")
+@login_required
+def viewcitas():
+    resulCita = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
+    ).filter(RegistroCita.idEmpleRegis == Empleado.id,
+    RegistroCita.idServicioRegis == Servicio.id,
+    RegistroCita.idConsultorioReg == Consultorio.id,
+    RegistroCita.idClinicaRegis == Clinica.id).all()
+    return render_template("clinica/vistaCitas.html", user=current_user, resulCita=resulCita)
+
+
+
