@@ -12,7 +12,7 @@ class RegistroCita(db.Model):
     telefono = db.Column(db.String(25))
     nota = db.Column(db.String(250))
     fechaRegistro = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    estatus = db.Column(db.String(8))
+    estatus = db.Column(db.String(20))
     fechaCancelacion = db.Column(db.DateTime,  nullable=True)
     idServicioRegis = db.Column(db.Integer, db.ForeignKey("servicios.id"), nullable=False)
     idClinicaRegis = db.Column(db.Integer, db.ForeignKey("clinicas.id"), nullable=False)

@@ -20,11 +20,26 @@
                     <h1 class="text-light">LISTADO DE SERVICIOS</h1>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                        {% for serv in servicios %}
-                        <h4>{{ serv.nombreServicio }} costo: ${{ serv.costoServicio }}</h4>
-                         {% endfor %}
-                    </div>
+                    
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Servicio</th>
+                                <th scope="col">Costo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for serv in servicios %}
+                            <tr>
+                                <td scope="row">{{ serv.id }}</td>
+                                <td>{{ serv.nombreServicio }}</td>
+                                <td>{{ serv.costoServicio }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
                 </div>
                 <div class="form-group mx-sm-4 pb-2">
                     <a href="{{url_for('DentalShield.servicios')}}">Crear Servicios</a>
