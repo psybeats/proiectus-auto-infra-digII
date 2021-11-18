@@ -1,33 +1,133 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--<script rel="stylesheet" src="{{ url_for('static', filename='lib/boostrap-4.5.3-dist/css/boostrap.min.css') }}"></script>-->
-    <title>{% block title %}{% endblock %} | DENTAL SHIELD®</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/dental_medical_healthcar.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap-4.5.3-dist/css/bootstrap.min.css') }}">
-    {% block customCSS %}
-    {% endblock %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="copyright" content="MACode ID, https://macodeid.com/">
+
+  <title>{% block title %}{% endblock %} | DENTAL SHIELD®</title>
+
+  {% block customCSS %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  {% endblock %}
 </head>
 
-<body>
-    <header>
-        <div>
-            <a href="">
-                <h1 align="center">DENTAL SHIELD®</h1>
-            </a>
-        </div>
-    </header>
+
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
+
+  <header >
+    <div class="topbar" style="background-color: #F2F3F4 ;">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 text-sm">
+          </div>
+          <div class="col-sm-4 text-right text-sm">
+            <div class="social-mini-button">
+              <a href="#"><span class="site-info fw-bolder" style="color:black;">01 800 6589 125</span></a>
+              <span class="divider fw-bolder" style="color:black;">|</span>
+              <a href="#" class="fw-bolder" style="color:black;"><span class="mai-mail text-primary"></span>contacto@dentalshield.com</a>
+            </div>
+            </div>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </div> <!-- .topbar -->
+
+
+<!-- --------------------NAV ----------------------------------------- -->
+<!-- --------------------------------------------NAV------------------------------------------------- -->
+    
+</header>
+
     {% block body %}
     {% endblock %}
 
-    <script src="{{ url_for('static', filename='lib/bootstrap-4.5.3-dist/js/jquery-3.5.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/bootstrap-4.5.3-dist/js/popper.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/bootstrap-4.5.3-dist/js/bootstrap.min.js') }}"></script>
-    {% block customJS %}
-    {% endblock %}
-</body>
+    <!--anuncio-->
+  <div class="page-section banner-home bg-image" style="background-image: url(../static/img/banner-pattern.svg);">
+    <div class="container py-5 py-lg-0">
+      <div class="row align-items-center">
+        <div class="col-lg-4 wow zoomIn">
+          <div class="img-banner d-none d-lg-block">
+            <img src="{{ url_for('static', filename='img/mobile_app.png')}}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-8 wow fadeInRight">
+          <h1 class="font-weight-normal mb-3">¡Quedate en Casa!</h1>
+           <h1 class="font-weight-normal mb-3">Es un Acto de Responsabilidad</h1>
+          <a href="https://www.gob.mx/salud" target="_blank"><img src="{{ url_for('static', filename='img/secretariaS.jpg')}}" alt="" width="300px" height="100px"></a>
+          <a href="https://coronavirus.gob.mx/" class="ml-2" target="_blank"><img src="{{ url_for('static', filename='img/covid.jpg')}}" alt="" width="300px" height="100px"></a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- .banner-home -->
+
+  <footer class="page-footer">
+  	
+    <div class="container">
+
+      <div class="row px-md-3">
+
+      	<div class="col-sm-6 col-lg-3 py-3">
+          <ul class="footer-menu">
+          	<img src="{{ url_for('static', filename='img/doctors/logo.jpg')}}" alt="logo" style="max-width: 200%; height: 200%;" data-ll-status="loaded" width="-120" height="200"><br>  </ul> </div>
+        <div class="col-sm-6 col-lg-3 py-3">
+        	
+          <h7>Compañía </h7>
+          <ul class="footer-menu">
+            <li><a href="{{url_for('DentalShield.about')}}">Acerca de DENTAL SHIELD</a></li>
+            <li><a href="{{url_for('DentalShield.about')}}">Privacidad en DENTAL SHIELD</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-6 col-lg-3 py-3">
+          <h7>Conoce más</h7>
+          <ul class="footer-menu">
+            <li><a href="{{url_for('DentalShield.about')}}">Terminos y Condiciones</a></li>
+            <li><a href="{{url_for('DentalShield.about')}}">Privacidad</a></li>
+            <li><a href="{{url_for('DentalShield.about')}}">Aviso legal</a></li>
+          </ul>
+        </div>
+      
+        <div class="col-sm-6 col-lg-3 py-3">
+          <h7>Contáctanos</h7> 
+           <br>
+          <a href="#" class="footer-link">Cuernavaca Morelos</a>
+          <a href="#" class="footer-link">777-496-14-35</a>
+          <a href="#" class="footer-link">contacto@dentalshield.com</a>
+        </div>
+        <div class="col-sm-6 col-lg-3 py-3">
+  <h7 class="mt-3">Maximiza el potencial</h7>
+           <div class="footer-sosmed mt-3">
+             <a href="#" target="_blank"><span class="mai-logo-facebook-f"></span></a>
+            <a href="#" target="_blank"><span class="mai-logo-instagram"></span></a>
+            <a href="#" target="_blank"><span class="mai-logo-linkedin"></span></a>
+          </div>
+            </div>        
+      </div>
+
+      <hr>
+
+       <!--<p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p> -->
+    </div>
+  </footer>
+{% block customJS %}
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
 
 </html>
