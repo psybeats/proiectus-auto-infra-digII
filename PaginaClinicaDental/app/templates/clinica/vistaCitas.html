@@ -1,0 +1,104 @@
+{% extends './body.html' %}
+{% block header %}
+<h2>{% block title %}Consultar Citas{% endblock %}</h2>
+{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/serviciosC.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+{% endblock %}
+
+{% block body %}
+
+<div class="conteiner">
+    <div class="row justify-content-center pt-5 mt-5">
+        <div class="">
+            <form class="form-signup" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group text-center pt-3">
+                    <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
+                    <h1 class="text-light"> Consultas Citas </h1>
+                </div>
+                <center>
+                <table class="table table-striped table-hover table-responsive-sm" >
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre Paciente</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Nota</th>
+                                <th scope="col">Fecha Registro</th>
+                                <th scope="col">Estatus</th>
+                                <th scope="col">Fecha de Cancelación</th>
+                                <th scope="col">Servicio</th>
+                                <th scope="col">Total a  Pagar</th>
+                                <th scope="col">Clinica</th>
+                                <th scope="col">Consultorio</th>
+                                <th scope="col">Empleado</th>
+                                <th scope="col">Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for conCita in resulCita %}
+                            <tr>
+                                <td scope="row">{{ conCita.RegistroCita.id }}</td>
+                                <td scope="row">{{ conCita.RegistroCita.nombrePaciente }} {{conCita.RegistroCita.apellidoPatPaciente }} {{ conCita.RegistroCita.apellidoMatPaciente}}</td>
+                                <td scope="row">{{ conCita.RegistroCita.edad }} años</td>
+                                <td scope="row">{{ conCita.RegistroCita.telefono }}</td>
+                                <td scope="row">{{ conCita.RegistroCita.nota }}</td>
+                                <td scope="row">{{ conCita.RegistroCita.fechaRegistro }}</td>
+                                <td scope="row">{{ conCita.RegistroCita.estatus }}</td>
+                                <td scope="row">{{ conCita.RegistroCita.fechaCancelacion }}</td>
+                                <td scope="row">{{ conCita.Servicio.nombreServicio }}</td>
+                                <td scope="row">{{ conCita.Servicio.costoServicio }}</td>
+                                <td scope="row">{{ conCita.Clinica.nombreClinica }}</td>
+                                <td scope="row">{{ conCita.Consultorio.id }}</td>
+                                <td scope="row">{{ conCita.Empleado.username }} {{ conCita.Empleado.apellidoPAtEmpleado}} {{ conCita.Empleado.apellidoMatEmpleado }}</td>
+                                
+                                 <td>
+                                    <a href="updatecitas/{{ conCita.RegistroCita.id }}" class="btn btn-outline-dark">Edit</a>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                </center>
+
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    <a href="{{url_for('DentalShield.citas')}}" class="btn btn-outline-success">Registrar Cita</a>
+                    <a> | </a>
+                    <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
+                </div>
+                <div class="form-group mx-sm-4 pb-2">
+                    
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+{% block customJS %}
+<script src="{{ url_for('static', filename='js/servicios.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% endblock %}

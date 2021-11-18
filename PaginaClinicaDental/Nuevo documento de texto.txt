@@ -1,0 +1,7 @@
+
+
+
+                                <!--<td scope="row">
+                                    <a href="{{url_for('DentalShield.updatecitas', id=conCita.RegistroCita.id)}}">Update</a>
+                                    <a href="updatecitas/{{ conCita.RegistroCita.id }}">Edit</a>
+                                </td>-->
