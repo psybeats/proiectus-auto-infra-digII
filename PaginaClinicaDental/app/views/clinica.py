@@ -108,7 +108,7 @@ def citas():
         apellidoPatPaciente = request.form.get("apellidoPatPaciente")
         apellidoMatPaciente = request.form.get("apellidoMatPaciente")
         edad = request.form.get("edad")
-        estatus = "Cita Activa"
+        estatus = "Activo"
         telefono = request.form.get("telefono")
         nota = request.form.get("nota")
         fechaRegistro = request.form.get("fechaRegistro")
@@ -155,12 +155,22 @@ def updatecitas(id):
         updatestatus = request.form["estatus"]
         fechacan = request.form["fechaCancelacion"]
 
-        ucita.estatus = updatestatus
-        ucita.fechaCancelacion = fechacan
 
-        db.session.add(ucita)
-        db.session.commit()
-        return redirect(url_for("DentalShield.viewcitas"))
+        error = None
+        if not updatestatus:
+            error = "Se requiere un estatus"
+        elif not fechacan:
+            error = "Se requiere una fecha de cancelacion"
+
+        if error is not None:
+            flash(error)
+        else:
+            ucita.estatus = updatestatus
+            ucita.fechaCancelacion = fechacan
+
+            db.session.add(ucita)
+            db.session.commit()
+            return redirect(url_for("DentalShield.viewcitas"))
 
     return render_template("clinica/updatecitas.html", user=current_user, ucita=ucita)
 

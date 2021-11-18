@@ -5,8 +5,16 @@
 
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/signUP.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/serviciosC.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 {% endblock %}
+
 
 {% block body %}
 
@@ -19,33 +27,34 @@
                     <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
                     <h4 class="text-light">REGISTRATE</h4>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+            <center>
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="username">Nombre del usuario</label>
                     <input type="text" name="username" id="username" class="form-control"
                            placeholder="Nombre(s)" minlength="3" maxlength="20" required>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="apellidoPAtEmpleado">Apellido Paterno</label>
                     <input type="text" name="apellidoPAtEmpleado" id="apellidoPAtEmpleado" class="form-control"
                            placeholder="Apellido Paterno" minlength="3" maxlength="25" required>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="apellidoMatEmpleado">Apellido Materno</label>
                     <input type="text" name="apellidoMatEmpleado" id="apellidoMatEmpleado" class="form-control"
                            placeholder="Apellido Materno" minlength="3" maxlength="25" required>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="estadoEmpleado">Estado del Empleado</label>
                     <input type="text" name="estadoEmpleado" id="estadoEmpleado" class="form-control"
                            placeholder="Activo/Inactivo" minlength="6" maxlength="8" required>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="correoElectronico">Correo Electrónico</label>
                     <input type="text" name="correoElectronico" id="correoElectronico" class="form-control"
                            placeholder="Ingrese el correo electrónico" minlength="6" maxlength="150" required>
                 </div>
 
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="idConsultorioEmple">Elije el Consultorio Asignado</label>
                     <select name="idConsultorioEmple" id="idConsultorioEmple" class="custom-select">
                         {% for post in consult %}
@@ -53,7 +62,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="idClinicaEmpleado">Elije la Clinica a la que Pertenece</label>
                     <select name="idClinicaEmpleado" id="idClinicaEmpleado" class="custom-select">
                         {% for post1 in clinic %}
@@ -61,7 +70,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="tipoRol">Elije el Rol Asignado</label>
                     <select name="tipoRol" id="tipoRol" class="custom-select">
                         {% for post2 in rol %}
@@ -71,30 +80,42 @@
                 </div>
                 
 
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="password">Contraseña</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="Ingrese la contraseña"
                            minlength="6" maxlength="255" required>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="passwordV">Validar contraseña</label>
                     <input type="password" name="passwordV" id="passwordV" class="form-control" placeholder="Ingrese de nuevo la contraseña"
                            minlength="6" maxlength="255" required>
                 </div>
+            </center>
                 <div class="form-group mx-sm-4 pb-2">
-                    <button class="w-100 btn-lg btn-primary" type="submit">CREAR USUARIO</button>
+                    <button class="btn btn-primary mt-3 wow zoomIn" type="submit">CREAR USUARIO</button>
                 </div>
+
+
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('auth.login')}}">Iniciar Sesión</a>
-                    <a>|</a>
-                    <a href="{{url_for('DentalShield.index')}}">INDEX</a>
+                    <a href="{{url_for('auth.login')}}" class="btn btn-outline-success">Iniciar Sesión</a>
+                    <a> | </a>
+                    <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>
+
+
             </form>
         </div>
     </div>
 </div>
 {% block customJS %}
 <script src="{{ url_for('static', filename='js/register.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% endblock %}

@@ -6,6 +6,16 @@
 
 {% block customCSS %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+ 
+<link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
@@ -19,24 +29,27 @@
                     <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
                     <h4 class="text-light">REGISTRAR SERVICIOS</h4>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <center>
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="nombreServicio">Nombre del Servicio</label>
                     <input type="text" name="nombreServicio" id="nombreServicio" class="form-control"
                         placeholder="Nombre del Servicio" minlength="3" maxlength="30" required>
                 </div>
-                <div class="form-group mx-sm-4 pt-3">
+                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="costoServicio">Costo</label>
                     <input type="text" name="costoServicio" id="costoServicio" class="form-control" placeholder="Costo"
                         minlength="3" maxlength="255" required>
-                </div> 
-                <div class="form-group mx-sm-4 pb-2">
-                    <button class="w-100 btn-lg btn-primary" type="submit">AGREGAR SERVICIO</button>
                 </div>
+                </center> 
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('DentalShield.viewservicios')}}">Ver Servicios</a>
+                    <button class="btn btn-primary mt-3 wow zoomIn" type="submit">AGREGAR SERVICIO</button>
                 </div>
+
+
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('DentalShield.index')}}">INDEX</a>
+                    <a href="{{url_for('DentalShield.viewservicios')}}" class="btn btn-outline-success">Ver Servicios</a>
+                    <a> | </a>
+                    <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>
 
 
@@ -46,6 +59,13 @@
 </div>
 {% block customJS %}
 <script src="{{ url_for('static', filename='js/servicios.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% endblock %}
