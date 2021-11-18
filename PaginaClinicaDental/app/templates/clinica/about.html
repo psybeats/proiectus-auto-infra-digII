@@ -1,0 +1,159 @@
+{% extends './body.html' %}
+{% block header %}
+<h2>{% block title %}Registro de Cita {% endblock %}</h2>
+{% endblock %}
+ 
+{% block customCSS %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css')}}">
+{% endblock %}
+
+{% block container %}
+ 
+    <div class="page-banner overlay-dark bg-image" style="background-image: url(../static/img/bg_image_1.jpg); width: 150%; left: -25%; top: -16px;">
+        <div class="banner-section">
+            <div class="container text-center wow fadeInUp">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb breadcrumb-dark bg-transparent justify-content-center py-0 mb-2">
+                        <li class="breadcrumb-item"><a href="{{ url_for('DentalShield.index') }}">Doctores</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="{{ url_for('auth.login') }}">Login</a></li>
+                    </ol>
+                </nav>
+                <h1 class="font-weight-normal">CONOCENOS</h1>
+            </div> <!-- .container -->
+        </div> <!-- .banner-section -->
+    </div> <!-- .page-banner -->
+
+    <div class="page-section bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 py-3 wow zoomIn">
+                    <div class="card-service">
+                        <div class="circle-shape bg-secondary text-white">
+                            <span class="mai-chatbubbles-outline"></span>
+                        </div>
+                        <p><span>Comunicate</span> con Nosotros</p>
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 wow zoomIn">
+                    <div class="card-service">
+                        <div class="circle-shape bg-primary text-white">
+                            <span class="mai-shield-checkmark"></span>
+                        </div>
+                        <p><span>Lideres</span> en Limpieza Dental</p>
+                    </div>
+                </div>
+                <div class="col-md-4 py-3 wow zoomIn">
+                    <div class="card-service">
+                        <div class="circle-shape bg-accent text-white">
+                            <span class="mai-basket"></span>
+                        </div>
+                        <p><span>Precios</span> Accesibles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="row justify-content-center">
+                <div class="col-lg-8 wow fadeInUp">
+                    <h1>Bienvenido a Tu Centro <br> Dental</h1>
+                    <div class="col-lg-6 py-3 wow fadeInUp">
+                        <p class="text-grey mb-4">
+                            Protegemos la calidad en el servicio a través de la afiliación de dentistas que cumplen con nuestros estándares de calidad  y especialización.
+                        </p>
+                        <p class="text-grey mb-4">
+                            Gracias a la confianza de nuestros clientes estamos próximos a abrir nuevas sucursales en el estado
+                            de Morelos.
+                        </p>
+                    </div>
+                </div>
+  <div class="page-section">
+    <div class="container">
+      <h1 class="text-center mb-5 wow fadeInUp">Nuestros Doctores</h1>
+
+      <div class="owl-carousel wow fadeInUp" id="doctorSlideshow">
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+              <img src="{{ url_for('static', filename='img/doctors/doctor_1.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <p class="text-xl mb-0">Dr. Alejandro Gutierrez</p>
+              <span class="text-sm text-grey">Ortodoncista / Cirujano oral</span>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+              <img src="{{ url_for('static', filename='img/doctors/doctor_2.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <p class="text-xl mb-0">Dr. Josue Vela Valle</p>
+              <span class="text-sm text-grey">Odontologo</span>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+              <img src="{{ url_for('static', filename='img/doctors/doctor_3.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <p class="text-xl mb-0">Dr. Erick Flores Gomez</p>
+              <span class="text-sm text-grey">Odontologo</span>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+              <img src="{{ url_for('static', filename='img/doctors/dentista.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <p class="text-xl mb-0">Dr. Teodulfo Alegre</p>
+              <span class="text-sm text-grey">Odontologo / Cirujano Oral </span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+    <div class="maps-container wow fadeInUp">
+        <div id="google-maps"></div>
+    </div>
+
+   </div> <!-- .banner-home -->
+
+
+{% block customJS %}
+    
+<script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+{% endblock %}
+
+{% endblock %}
