@@ -1,0 +1,11 @@
+
+_python:S2208"GImport only needed names or import the module and then use its members.(»¼Œô
+{python:S117'"dRename this local variable "apellidoMatEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(«â¨°
+€python:S117&"dRename this local variable "apellidoPAtEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ô‰×ıÿÿÿÿ
+~python:S117("bRename this local variable "correoElectronico" to match the regular expression ^[_a-z][a-z0-9_]*$.(Äãèğùÿÿÿÿ
+{python:S117,"_Rename this local variable "estadoEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÇÁËÌúÿÿÿÿ
+…python:S117*"bRename this local variable "idClinicaEmpleado" to match the regular expression ^[_a-z][a-z0-9_]*$.(¾åïåøÿÿÿÿ8³­ÉÓ/
+python:S117)"cRename this local variable "idConsultorioEmple" to match the regular expression ^[_a-z][a-z0-9_]*$.(ß‘Åİ8³­ÉÓ/
+vpython:S117%"ZRename this local variable "passwordV" to match the regular expression ^[_a-z][a-z0-9_]*$.(­£†¯ùÿÿÿÿ
+vpython:S117+"XRename this local variable "tipoRol" to match the regular expression ^[_a-z][a-z0-9_]*$.(ï‹ı8´­ÉÓ/
+;python:S125b"Remove this commented out code.(Ëş¸ºüÿÿÿÿ

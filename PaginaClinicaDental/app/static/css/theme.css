@@ -828,6 +828,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 
 .topbar {
+  text-align: center;
   border-bottom: 1px solid #E8EEE4;
 }
 

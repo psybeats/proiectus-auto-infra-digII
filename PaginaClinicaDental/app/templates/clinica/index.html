@@ -11,7 +11,7 @@
   {% endblock %}
 
 {% block container %}
-  <div class="page-hero bg-image overlay-dark" style="background-image: url(../static/img/bg_image_1.jpg); width: 150%; left: -25%; top: -16px">
+  <div class="page-hero bg-image overlay-dark" style="background-image: url(../static/img/assets/banner_dentalShield.png);">
     <div class="hero-section">
       <div class="container text-center wow zoomIn">
         <span class="subhead">Sonrisa Mata Carita</span>
@@ -58,18 +58,16 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6 py-3 wow fadeInUp">
-            <h1>Bienvenido a Tu Centro <br> Dental</h1>
+            <h1>Bienvenido a Tu Centro Dental</h1>
             <p class="text-grey mb-4">
-              Protegemos la calidad en el servicio a través de la afiliación de dentistas que cumplen con nuestros estándares de calidad  y especialización.
-              </p>
-              <p class="text-grey mb-4">Gracias a la confianza de nuestros clientes estamos próximos a abrir nuevas sucursales en el estado
+              Protegemos la calidad en el servicio a través de la afiliación de dentistas que cumplen con nuestros estándares de calidad y especialización. Gracias a la confianza de nuestros clientes estamos próximos a abrir nuevas sucursales en el estado
               de Morelos.
             </p>
             <a href="{{url_for('DentalShield.about')}}" class="btn btn-primary">Sobre Nosotros</a>
           </div>
           <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
             <div class="img-place custom-img-1">
-              <img src="{{ url_for('static', filename='img/bg-doctor.png') }}" alt="">
+              <img src="{{ url_for('static', filename='img/assets/bg-doctor.png') }}" alt="">
             </div>
           </div>
         </div>
@@ -85,7 +83,7 @@
         <div class="item">
           <div class="card-doctor">
             <div class="header">
-              <img src="{{ url_for('static', filename='img/doctors/doctor_1.jpg') }}" alt="">
+              <img src="{{ url_for('static', filename='img/assets/doctors/doctor_1.jpg') }}" alt="">
               <div class="meta">
                 <a href="#"><span class="mai-call"></span></a>
                 <a href="#"><span class="mai-logo-whatsapp"></span></a>
@@ -100,7 +98,22 @@
         <div class="item">
           <div class="card-doctor">
             <div class="header">
-              <img src="{{ url_for('static', filename='img/doctors/doctor_2.jpg') }}" alt="">
+              <img src="{{ url_for('static', filename='img/assets/doctors/doctor_4.jpg') }}" alt="">
+              <div class="meta">
+                <a href="#"><span class="mai-call"></span></a>
+                <a href="#"><span class="mai-logo-whatsapp"></span></a>
+              </div>
+            </div>
+            <div class="body">
+              <p class="text-xl mb-0">Dr. Javier Bernal</p>
+              <span class="text-sm text-grey">Ortodoncista / Cirujano oral</span>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="card-doctor">
+            <div class="header">
+              <img src="{{ url_for('static', filename='img/assets/doctors/doctor_2.jpg') }}" alt="">
               <div class="meta">
                 <a href="#"><span class="mai-call"></span></a>
                 <a href="#"><span class="mai-logo-whatsapp"></span></a>
@@ -115,7 +128,7 @@
         <div class="item">
           <div class="card-doctor">
             <div class="header">
-              <img src="{{ url_for('static', filename='img/doctors/doctor_3.jpg') }}" alt="">
+              <img src="{{ url_for('static', filename='img/assets/doctors/doctor_3.jpg') }}" alt="">
               <div class="meta">
                 <a href="#"><span class="mai-call"></span></a>
                 <a href="#"><span class="mai-logo-whatsapp"></span></a>
@@ -130,7 +143,7 @@
         <div class="item">
           <div class="card-doctor">
             <div class="header">
-              <img src="{{ url_for('static', filename='img/doctors/dentista.jpg') }}" alt="">
+              <img src="{{ url_for('static', filename='img/assets/doctors/dentista.jpg') }}" alt="">
               <div class="meta">
                 <a href="#"><span class="mai-call"></span></a>
                 <a href="#"><span class="mai-logo-whatsapp"></span></a>

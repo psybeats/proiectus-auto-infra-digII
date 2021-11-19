@@ -1,0 +1,2 @@
+
+îpython:S1192"vDefine a constant instead of duplicating this literal "INSERT INTO `roles` (`id`, `tipoRol`) VALUES (%s, %s)" 3 times.(“»„\8â≠çΩ”/
