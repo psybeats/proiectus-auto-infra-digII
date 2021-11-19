@@ -5,7 +5,7 @@
 
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/serviciosC.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/signUP.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
@@ -24,7 +24,7 @@
             <form class="form-signup" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
-                    <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
+                    <img class="mb-4" src="{{ url_for('static', filename='img/assets/dental-clinic.ico')}}" alt="" width="72" height="72">
                     <h4 class="text-light">REGISTRATE</h4>
                 </div>
             <center>
@@ -108,7 +108,7 @@
     </div>
 </div>
 {% block customJS %}
-<script src="{{ url_for('static', filename='js/register.js')}}"></script>
+<script src="{{ url_for('static', filename='js/centerBody.js')}}"></script>
 <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>

@@ -1,0 +1,62 @@
+
+fjavascript:S905"FExpected an assignment or function call and instead saw an expression.(’¬Ëøùÿÿÿÿ
+ajavascript:S1121"@Extract the assignment of "module.exports" from this expression.(’¬Ëøùÿÿÿÿ
+_javascript:S3358"DExtract this nested ternary operation into an independent statement.(ÕÍÏd
+Njavascript:S1117"-'obj' is already declared in the upper scope.(ˆã›¸üÿÿÿÿ
+Njavascript:S1117"-'obj' is already declared in the upper scope.(ˆã›¸üÿÿÿÿ
+hjavascript:S4138""LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(Â¢Ë 
+Zjavascript:S1117S"9'_getPrototypeOf' is already declared in the upper scope.(–ò‰ÿÿÿÿÿ
+Ljavascript:S1117S"+'o' is already declared in the upper scope.(–ò‰ÿÿÿÿÿ
+Zjavascript:S1117Z"9'_setPrototypeOf' is already declared in the upper scope.(©Å»¼úÿÿÿÿ
+Ljavascript:S1117Z"+'o' is already declared in the upper scope.(©Å»¼úÿÿÿÿ
+Ljavascript:S1117Z"+'p' is already declared in the upper scope.(©Å»¼úÿÿÿÿ
+;javascript:S1186h"Unexpected empty function.(Ïø…¨ÿÿÿÿÿ
+Ujavascript:S1117s"4'_construct' is already declared in the upper scope.(ğñüıÿÿÿÿ
+Qjavascript:S1117s"0'Parent' is already declared in the upper scope.(ğñüıÿÿÿÿ
+Ojavascript:S1117s".'args' is already declared in the upper scope.(ğñüıÿÿÿÿ
+Pjavascript:S1117s"/'Class' is already declared in the upper scope.(ğñüıÿÿÿÿ
+Pjavascript:S1117".'_get' is already declared in the upper scope.(Š€Üûÿÿÿÿ
+Rjavascript:S1117"0'target' is already declared in the upper scope.(Š€Üûÿÿÿÿ
+Tjavascript:S1117"2'property' is already declared in the upper scope.(Š€Üûÿÿÿÿ
+Tjavascript:S1117"2'receiver' is already declared in the upper scope.(Š€Üûÿÿÿÿ
+njavascript:S4138·"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ÁŒß´şÿÿÿÿ
+Djavascript:S1940ö"(Use the opposite operator (===) instead.(Åf
+njavascript:S4138«"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(ÁÿôËüÿÿÿÿ
+Djavascript:S1940¶"(Use the opposite operator (===) instead.(´ë‹
+Djavascript:S1940¶"(Use the opposite operator (===) instead.(´ë‹
+Djavascript:S1940¶"(Use the opposite operator (===) instead.(´ë‹
+vjavascript:S3776é"TRefactor this function to reduce its Cognitive Complexity from 18 to the 15 allowed.(×ƒËÈÿÿÿÿÿ
+njavascript:S4138ƒ"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(Ÿ×üÆşÿÿÿÿ
+Ijavascript:S1940£"'Use the opposite operator (<=) instead.(Ï¡ïŠÿÿÿÿÿ
+hjavascript:S4138 "LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(âöÛF
+Jjavascript:S1940£"(Use the opposite operator (===) instead.(¦±ˆøÿÿÿÿ
+Qjavascript:S1117“"4'outputsize' is already declared in the upper scope.(¹¥å±
+ijavascript:S4138í"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(Êåû
+njavascript:S4138ø"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(½Û¶Æùÿÿÿÿ
+Kjavascript:S1117­	".'Swal' is already declared in the upper scope.(¤èÜ¦
+Kjavascript:S1117ƒ".'Swal' is already declared in the upper scope.(¤èÜ¦
+~javascript:S1488Ÿ"aImmediately return this expression instead of assigning it to the temporary variable "MixinSwal".(Èà‹©
+Ujavascript:S1117¢"3'MixinSwal' is already declared in the upper scope.(åñ«®ÿÿÿÿÿ
+Ljavascript:S1117ª"/'_main' is already declared in the upper scope.(Æ×ÒÛ
+njavascript:S4138‚"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(®ö€öüÿÿÿÿ
+Ljavascript:S1117—"/'error' is already declared in the upper scope.(À®«©
+Qjavascript:S1117¾"/'Timer' is already declared in the upper scope.(Áî…«ùÿÿÿÿ
+Sjavascript:S1117ğ"6'getTimerLeft' is already declared in the upper scope.(À§Çà
+Vjavascript:S1117‚"4'addClasses' is already declared in the upper scope.(â™˜Óıÿÿÿÿ
+fjavascript:S3358´"DExtract this nested ternary operation into an independent statement.(‡Ãßúÿÿÿÿ
+Rjavascript:S1117Ş"0'select' is already declared in the upper scope.(£ÑÜîşÿÿÿÿ
+Qjavascript:S1117ï"/'radio' is already declared in the upper scope.(©¥ÎŞúÿÿÿÿ
+qjavascript:S3776Î"TRefactor this function to reduce its Cognitive Complexity from 16 to the 15 allowed.(”ÿç–
+Qjavascript:S1135Ğ"4Complete the task associated to this "TODO" comment.(Âšµº
+Rjavascript:S1117ä"5'globalState' is already declared in the upper scope.(è‚Ÿ
+ijavascript:S4138ı"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(Æö ë
+Njavascript:S1751ı"1Refactor this loop to do more than one iteration.(Æö ë
+djavascript:S1121İ"BExtract the assignment of "_currentInstance" from this expression.(À¬Ú»ÿÿÿÿÿ
+;javascript:S2990ê"Remove the use of "this".(ƒ·«Õıÿÿÿÿ
+;javascript:S2990ê"Remove the use of "this".(ƒ·«Õıÿÿÿÿ
+;javascript:S2990ê"Remove the use of "this".(ƒ·«Õıÿÿÿÿ
+;javascript:S2990ê"Remove the use of "this".(ƒ·«Õıÿÿÿÿ
+;javascript:S2990ê"Remove the use of "this".(ƒ·«Õıÿÿÿÿ
+;javascript:S2990ê"Remove the use of "this".(ƒ·«Õıÿÿÿÿ
+Bjavascript:S878ì"!Unexpected use of comma operator.(Şˆ¡úÿÿÿÿ
+Mjavascript:S1117ì"+'e' is already declared in the upper scope.(Şˆ¡úÿÿÿÿ
