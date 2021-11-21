@@ -62,8 +62,10 @@
                                 <td scope="row">{{ conCita.Consultorio.id }}</td>
                                 <td scope="row">{{ conCita.Empleado.username }} {{ conCita.Empleado.apellidoPAtEmpleado}} {{ conCita.Empleado.apellidoMatEmpleado }}</td>
                                 
-                                 <td>
-                                    <a href="updatecitas/{{ conCita.RegistroCita.id }}" class="btn btn-outline-dark">Edit</a>
+                                <td>
+                                    <a href="updatecitas/{{ conCita.RegistroCita.id }}" class="btn btn-outline-dark">Actualizar Cita</a>
+
+                                    <a href="cancelarcitas/{{ conCita.RegistroCita.id }}" class="btn btn-outline-dark">Cancelar Cita</a>
                                 </td>
 
                             </tr>
