@@ -43,11 +43,7 @@
                     <input type="text" name="apellidoMatEmpleado" id="apellidoMatEmpleado" class="form-control"
                            placeholder="Apellido Materno" minlength="3" maxlength="25" required>
                 </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="estadoEmpleado">Estado del Empleado</label>
-                    <input type="text" name="estadoEmpleado" id="estadoEmpleado" class="form-control"
-                           placeholder="Activo/Inactivo" minlength="6" maxlength="8" required>
-                </div>
+               
                 <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
                     <label for="correoElectronico">Correo Electrónico</label>
                     <input type="text" name="correoElectronico" id="correoElectronico" class="form-control"
@@ -97,7 +93,7 @@
 
 
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('auth.login')}}" class="btn btn-outline-success">Iniciar Sesión</a>
+                    <a href="{{url_for('DentalShield.about')}}" class="btn btn-outline-success">Sobre Nosotros</a>
                     <a> | </a>
                     <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>

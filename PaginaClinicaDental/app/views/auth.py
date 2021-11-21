@@ -41,7 +41,7 @@ def signup():
         idConsultorioEmple = request.form.get("idConsultorioEmple")
         idClinicaEmpleado = request.form.get("idClinicaEmpleado")
         tipoRol = request.form.get("tipoRol")
-        estadoEmpleado = request.form.get("estadoEmpleado")
+        estadoEmpleado = "Activo"
         creado = None
 
         email_exists = Empleado.query.filter_by(correoElectronico=correoElectronico).first()
@@ -103,6 +103,8 @@ def login():
 
     flash(MENSAJE_BIENVENIDA, category='success')
     return render_template("auth/login.html", user=current_user)
+
+
 
 
 # Para cerrar sesión

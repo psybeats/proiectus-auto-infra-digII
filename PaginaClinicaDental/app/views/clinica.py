@@ -1,8 +1,9 @@
 from flask import Flask , Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import joinedload
 
 from werkzeug.exceptions import abort
-
+import pymysql
 from flask_login import login_required, current_user
 from app.mensajesflash import *
 
@@ -15,9 +16,9 @@ from app.models.pago import Pago
 from app.models.consultorio import Consultorio
 from app.models.clinica import Clinica
 
+import configPROCESOS as procesos
 
 from app import db
-from sqlalchemy.orm import joinedload
 
 
 # lazuli = Blueprint("lazuli", __name__, url_prefix="/clinica")
@@ -108,7 +109,7 @@ def citas():
         apellidoPatPaciente = request.form.get("apellidoPatPaciente")
         apellidoMatPaciente = request.form.get("apellidoMatPaciente")
         edad = request.form.get("edad")
-        estatus = "Activo"
+        estatus = "Cita Activa"
         telefono = request.form.get("telefono")
         nota = request.form.get("nota")
         fechaRegistro = request.form.get("fechaRegistro")
@@ -137,19 +138,23 @@ def citas():
         if error is not None:
             flash(error)
         else:
+            
             db.session.add(registro)
             db.session.commit()
+
+            procesos.random_registoCitas()
+            
+
             return redirect(url_for("DentalShield.citas"))
 
     return render_template("clinica/citas.html", posts=posts, clinica=clinica, user=current_user)
 
 
-#Update Registro Citas
-@dentalShield.route("/DentalShield/updatecitas/<int:id>" , methods=["GET", "POST"])
+#--------------------- Cancelar Citas
+@dentalShield.route("/DentalShield/cancelarcitas/<int:id>" , methods=["GET", "POST"])
 @login_required
-def updatecitas(id):
-    ucita =db.session.query(RegistroCita).filter(RegistroCita.id == id).first()
-    
+def cancelarcitas(id):
+    cancita = db.session.query(RegistroCita).filter(RegistroCita.id == id).first()
 
     if request.method == "POST":
         updatestatus = request.form["estatus"]
@@ -165,15 +170,74 @@ def updatecitas(id):
         if error is not None:
             flash(error)
         else:
-            ucita.estatus = updatestatus
-            ucita.fechaCancelacion = fechacan
+            cancita.estatus = updatestatus
+            cancita.fechaCancelacion = fechacan
+
+            db.session.add(cancita)
+            db.session.commit()
+            return redirect(url_for("DentalShield.viewcitas"))
+
+    return render_template("clinica/cancelarCitas.html", user=current_user, cancita=cancita)
+
+#-------------------- Update Registro Citas 
+@dentalShield.route("/DentalShield/updatecitas/<int:id>" , methods=["GET", "POST"])
+@login_required
+def updatecitas(id):
+    posts = Servicio.query.all()
+    clinica = Clinica.query.all()
+    ucita =db.session.query(RegistroCita).filter(RegistroCita.id == id).first()
+    
+    resulCita = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
+    ).filter(RegistroCita.idEmpleRegis == Empleado.id,
+    RegistroCita.idServicioRegis == Servicio.id,
+    RegistroCita.idConsultorioReg == Consultorio.id,
+    RegistroCita.idClinicaRegis == Clinica.id).all()
+
+    if request.method == "POST":
+        
+        nombrePaciente = request.form.get("nombrePaciente")
+        apellidoPatPaciente = request.form.get("apellidoPatPaciente")
+        apellidoMatPaciente = request.form.get("apellidoMatPaciente")
+        edad = request.form.get("edad")
+        telefono = request.form.get("telefono")
+        nota = request.form.get("nota")
+        fechaRegistro = request.form.get("fechaRegistro")
+        idServicioRegis = request.form.get("nombreServicio")
+        idClinicaRegis = request.form.get("idClinicaRegis")
+
+
+        error = None
+        if not nombrePaciente:
+            error = "Se requiere un nombre del paciente"
+        elif not apellidoPatPaciente:
+            error = "Se requiere el apellido paterno del paciente"
+        elif not apellidoMatPaciente:
+            error = "Se requiere el apellido materno del paciente"
+        elif not edad:
+            error = "Se requiere la edad del paciente"
+        elif not telefono:
+            error = "Se requiere el teléfono del paciente"
+        elif not fechaRegistro:
+            error = "Se requiere una fecha de registro"
+
+        if error is not None:
+            flash(error)
+        else:
+            ucita.nombrePaciente = nombrePaciente
+            ucita.apellidoPatPaciente = apellidoPatPaciente
+            ucita.apellidoMatPaciente = apellidoMatPaciente
+            ucita.edad = edad 
+            ucita.telefono = telefono
+            ucita.nota = nota 
+            ucita.fechaRegistro = fechaRegistro
+            ucita.idServicioRegis = idServicioRegis
+            ucita.idClinicaRegis = idClinicaRegis
 
             db.session.add(ucita)
             db.session.commit()
             return redirect(url_for("DentalShield.viewcitas"))
 
-    return render_template("clinica/updatecitas.html", user=current_user, ucita=ucita)
-
+    return render_template("clinica/updatecitas.html", user=current_user, ucita=ucita, posts=posts, clinica=clinica, resulCita=resulCita)
 
 
 #Citas Registradas
