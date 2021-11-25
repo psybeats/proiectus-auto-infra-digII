@@ -1,0 +1,25 @@
+
+_python:S2208"GImport only needed names or import the module and then use its members.(»¼Œô
+6python:S125"Remove this commented out code.(ÉŞûï
+@python:S108'")Either remove or fill this block of code.(ã‘Û¾
+;python:S125)"Remove this commented out code.(íŸüûûÿÿÿÿ
+@python:S108=")Either remove or fill this block of code.(ã‘Û¾
+;python:S125>"Remove this commented out code.(ûùÿ­ûÿÿÿÿ
+zpython:S117G"^Rename this local variable "costoServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(àùˆÿúÿÿÿÿ
+{python:S117F"_Rename this local variable "nombreServicio" to match the regular expression ^[_a-z][a-z0-9_]*$.(ı°¦âûÿÿÿÿ
+;python:S125V"Remove this commented out code.(ĞŠç˜ÿÿÿÿÿ
+€python:S117k"dRename this local variable "apellidoMatPaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(”Í‰úÿÿÿÿ
+{python:S117j"dRename this local variable "apellidoPatPaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(ãâÆ¥
+wpython:S117q"aRename this local variable "fechaCancelacion" to match the regular expression ^[_a-z][a-z0-9_]*$.(ä ½5
+zpython:S117p"^Rename this local variable "fechaRegistro" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿õı¦øÿÿÿÿ
+{python:S117s"_Rename this local variable "idClinicaRegis" to match the regular expression ^[_a-z][a-z0-9_]*$.(š»ğ³şÿÿÿÿ
+|python:S117r"`Rename this local variable "idServicioRegis" to match the regular expression ^[_a-z][a-z0-9_]*$.(«ñøÿÿÿÿ
+{python:S117i"_Rename this local variable "nombrePaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(»²ÏÚûÿÿÿÿ
+python:S117Æ"dRename this local variable "apellidoMatPaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(”Í‰úÿÿÿÿ
+|python:S117Å"dRename this local variable "apellidoPatPaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(ãâÆ¥
+{python:S117Ê"^Rename this local variable "fechaRegistro" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿õı¦øÿÿÿÿ
+|python:S117Ì"_Rename this local variable "idClinicaRegis" to match the regular expression ^[_a-z][a-z0-9_]*$.(š»ğ³şÿÿÿÿ
+}python:S117Ë"`Rename this local variable "idServicioRegis" to match the regular expression ^[_a-z][a-z0-9_]*$.(«ñøÿÿÿÿ
+|python:S117Ä"_Rename this local variable "nombrePaciente" to match the regular expression ^[_a-z][a-z0-9_]*$.(»²ÏÚûÿÿÿÿ
+wpython:S117¼"ZRename this local variable "resulCita" to match the regular expression ^[_a-z][a-z0-9_]*$.(ø´ˆ™ùÿÿÿÿ
+wpython:S117õ"ZRename this local variable "resulCita" to match the regular expression ^[_a-z][a-z0-9_]*$.(ø´ˆ™ùÿÿÿÿ

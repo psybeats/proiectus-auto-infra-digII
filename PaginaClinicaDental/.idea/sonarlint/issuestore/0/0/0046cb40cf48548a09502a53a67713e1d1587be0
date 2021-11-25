@@ -1,16 +1,15 @@
 
-SWeb:UnsupportedTagsInHtml5Check"(Remove this deprecated "center" element.(¡á€Ò
 MWeb:TableWithoutCaptionCheck" Add a description to this table.( êòüÿÿÿÿ
-C	Web:S18273")Remove this deprecated "scope" attribute.(¯üÃ¸ùÿÿÿÿ
->	Web:S18274")Remove this deprecated "scope" attribute.(Îà¾
-C	Web:S18275")Remove this deprecated "scope" attribute.(¸î¸‹ÿÿÿÿÿ
->	Web:S18276")Remove this deprecated "scope" attribute.(Íõğï
->	Web:S18277")Remove this deprecated "scope" attribute.(ÏÕÎô
-C	Web:S18278")Remove this deprecated "scope" attribute.(ç×µ¼øÿÿÿÿ
-C	Web:S18279")Remove this deprecated "scope" attribute.(Šğ’—üÿÿÿÿ
-C	Web:S1827:")Remove this deprecated "scope" attribute.(ïÿïóüÿÿÿÿ
->	Web:S1827;")Remove this deprecated "scope" attribute.(¯¹’é
-C	Web:S1827<")Remove this deprecated "scope" attribute.(Ğ«ÕÔùÿÿÿÿ
-=	Web:S1827=")Remove this deprecated "scope" attribute.(óóú{
->	Web:S1827>")Remove this deprecated "scope" attribute.(æ˜
-C	Web:S1827?")Remove this deprecated "scope" attribute.(ş±Üùÿÿÿÿ
+J	Web:S18273")Remove this deprecated "scope" attribute.(¯üÃ¸ùÿÿÿÿ8š½±Õ/
+E	Web:S18274")Remove this deprecated "scope" attribute.(Îà¾8š½±Õ/
+J	Web:S18275")Remove this deprecated "scope" attribute.(¸î¸‹ÿÿÿÿÿ8š½±Õ/
+E	Web:S18276")Remove this deprecated "scope" attribute.(Íõğï8š½±Õ/
+E	Web:S18277")Remove this deprecated "scope" attribute.(ÏÕÎô8›½±Õ/
+J	Web:S18278")Remove this deprecated "scope" attribute.(ç×µ¼øÿÿÿÿ8›½±Õ/
+J	Web:S18279")Remove this deprecated "scope" attribute.(Šğ’—üÿÿÿÿ8›½±Õ/
+J	Web:S1827:")Remove this deprecated "scope" attribute.(ïÿïóüÿÿÿÿ8œ½±Õ/
+E	Web:S1827;")Remove this deprecated "scope" attribute.(¯¹’é8œ½±Õ/
+J	Web:S1827<")Remove this deprecated "scope" attribute.(Ğ«ÕÔùÿÿÿÿ8œ½±Õ/
+D	Web:S1827=")Remove this deprecated "scope" attribute.(óóú{8œ½±Õ/
+E	Web:S1827>")Remove this deprecated "scope" attribute.(æ˜8œ½±Õ/
+J	Web:S1827?")Remove this deprecated "scope" attribute.(ş±Üùÿÿÿÿ8œ½±Õ/

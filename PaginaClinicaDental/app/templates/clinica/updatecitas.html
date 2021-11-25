@@ -14,7 +14,8 @@
 
 <link rel="stylesheet" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
@@ -24,79 +25,97 @@
     <div class="row justify-content-center pt-5 mt-5">
         <div class="col-md-8 col-sm-8 col-xl-6 col-lg-5 formulario">
 
-            <form class="form-signup" action="/DentalShield/updatecitas/{{ucita.id}}" method="POST" >
+            <form class="form-signup" action="/DentalShield/updatecitas/{{ucita.id}}" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
-                    <img class="mb-4" src="{{ url_for('static', filename='img/dental-clinic.ico')}}" alt="" width="72" height="72">
                     <h4 class="text-light">ACTUALIZAR UNA CITA</h4>
                 </div>
-               
+
                 <center>
 
                     <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="nombrePaciente">Nombre del paciente: {{ucita.nombrePaciente}}</label>
-                    <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control"
-                    placeholder="Nombre(s)" maxlength="20" required value="{{ ucita.nombrePaciente }}">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="apellidoPatPaciente">Apellido Paterno: {{ucita.apellidoPatPaciente}}</label>
-                    <input type="text" name="apellidoPatPaciente" id="apellidoPatPaciente" class="form-control" placeholder="Apellido Paterno" maxlength="25" required value="{{ ucita.apellidoPatPaciente }}">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="apellidoMatPaciente">Apellido Materno: {{ucita.apellidoMatPaciente}}</label>
-                    <input type="text" name="apellidoMatPaciente" id="apellidoMatPaciente" class="form-control" placeholder="Apellido Materno" maxlength="25" required value="{{ ucita.apellidoMatPaciente }}">
-                </div>
-                <div class="fcol-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="edad">Edad: {{ucita.edad}}</label>
-                    <input type="text" name="edad" id="edad" class="form-control"
-                    placeholder="Eje. 23" maxlength="25" value="{{ ucita.edad }}">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="telefono">Teléfono: {{ucita.telefono}}</label>
-                    <input type="text" name="telefono" id="telefono" class="form-control"
-                    placeholder="Eje. 7353901190" maxlength="15" required value="{{ ucita.telefono }}">
-                </div>
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="nota">Nota: {{ucita.nota}}</label>
-                    <input type="text" name="nota" id="nota" class="form-control"
-                    placeholder="Escriba alguna información de importancia" minlength="6" maxlength="150" required value="{{ ucita.nota }}">
-                </div>
+                        <label for="nombrePaciente">Nombre del paciente: {{ucita.nombrePaciente}}</label>
+                        <input type="text" name="nombrePaciente" id="nombrePaciente" class="form-control"
+                               placeholder="Nombre(s)" maxlength="20" required value="{{ ucita.nombrePaciente }}">
+                    </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                        <label for="apellidoPatPaciente">Apellido Paterno: {{ucita.apellidoPatPaciente}}</label>
+                        <input type="text" name="apellidoPatPaciente" id="apellidoPatPaciente" class="form-control"
+                               placeholder="Apellido Paterno" maxlength="25" required
+                               value="{{ ucita.apellidoPatPaciente }}">
+                    </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                        <label for="apellidoMatPaciente">Apellido Materno: {{ucita.apellidoMatPaciente}}</label>
+                        <input type="text" name="apellidoMatPaciente" id="apellidoMatPaciente" class="form-control"
+                               placeholder="Apellido Materno" maxlength="25" required
+                               value="{{ ucita.apellidoMatPaciente }}">
+                    </div>
+                    <div class="fcol-12 col-sm-6 py-2 wow fadeInLeft">
+                        <label for="edad">Edad: {{ucita.edad}}</label>
+                        <input type="text" name="edad" id="edad" class="form-control"
+                               placeholder="Eje. 23" maxlength="25" value="{{ ucita.edad }}">
+                    </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                        <label for="telefono">Teléfono: {{ucita.telefono}}</label>
+                        <input type="text" name="telefono" id="telefono" class="form-control"
+                               placeholder="Eje. 7353901190" maxlength="15" required value="{{ ucita.telefono }}">
+                    </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                        <label for="nota">Nota: {{ucita.nota}}</label>
+                        <input type="text" name="nota" id="nota" class="form-control"
+                               placeholder="Escriba alguna información de importancia" minlength="6" maxlength="150"
+                               required value="{{ ucita.nota }}">
+                    </div>
 
-                <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                    <label for="fechaRegistro">Fecha de Cita: {{ ucita.fechaRegistro}}</label>
-                    <input type="datetime-local" name="fechaRegistro" id="fechaRegistro" class="form-control" maxlength="255" required value="{{ ucita.fechaRegistro }}">
-                </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                        <label for="fechaRegistro">Fecha de Cita: {{ ucita.fechaRegistro}}</label>
+                        <input type="datetime-local" name="fechaRegistro" id="fechaRegistro" class="form-control"
+                               maxlength="255" required value="{{ ucita.fechaRegistro }}">
+                    </div>
 
-                <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                    <label for="nombreServicio">Tratamientos Dentales:</label>
-                    <select name="nombreServicio" id="nombreServicio" class="custom-select">
-                        {% for post in posts %}
-                        <option value="{{ post.id }}">{{ post.nombreServicio }} costo: ${{ post.costoServicio }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                        <label for="nombreServicio">Tratamientos Dentales:</label>
+                        <select name="nombreServicio" id="nombreServicio" class="custom-select">
+                            {% for post in posts %}
+                            <option value="{{ post.id }}">{{ post.nombreServicio }} costo: ${{ post.costoServicio }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
-                <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                    <label for="idClinicaRegis">Clinicas:</label>
-                    <select name="idClinicaRegis" id="idClinicaRegis" class="custom-select">
-                        {% for post1 in clinica %}
-                        <option value="{{ post1.id }}">{{ post1.nombreClinica }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                        <label for="idClinicaRegis">Clinicas:</label>
+                        <select name="idClinicaRegis" id="idClinicaRegis" class="custom-select">
+                            {% for post1 in clinica %}
+                            <option value="{{ post1.id }}">{{ post1.nombreClinica }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
                 </center>
 
                 <div class="form-group mx-sm-4 pb-2">
                     <button class="btn btn-primary mt-3 wow zoomIn" type="submit">ACTUALIZAR CITA</button>
                 </div>
-            
+
                 <div class="form-group mx-sm-4 pb-2">
                     <a href="{{url_for('DentalShield.viewcitas')}}" class="btn btn-outline-success">Ver Citas</a>
                     <a>|</a>
                     <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>
-
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <br/>
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong style='font-size: 14px;'>{{ message }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
             </form>
         </div>
     </div>
@@ -104,14 +123,16 @@
 
 
 {% block customJS %}
-<script src="{{ url_for('static', filename='js/servicios.js')}}"></script>
+<script src="{{ url_for('static', filename='js/centerBody.js')}}"></script>
 <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 {% endblock %}
 
 {% endblock %}

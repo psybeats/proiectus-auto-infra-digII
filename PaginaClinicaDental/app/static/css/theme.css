@@ -1,12 +1,3 @@
-/*
-  Template Name: One-health
-  Template URI: https://macodeid.com/projects/one-health
-  Copyright: MACode ID, https://macodeid.com/
-  License: Creative Commons 4.0
-  License URI: https://creativecommons.org/licenses/by/4.0/
-  Version: 1.0
- */
-
 :root {
   --primary: #00D9A5;
   --accent: #FF3D85;
@@ -826,49 +817,34 @@ a.text-dark:hover, a.text-dark:focus {
   pointer-events: none;
 }
 
-
 .topbar {
-  text-align: center;
-  border-bottom: 1px solid #E8EEE4;
+  margin: auto;
+  background-color: #75bbaa;
+
 }
 
 .topbar .row {
-  align-items: center;
-  min-height: 36px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .topbar .site-info a {
-  display: inline-flex;
-  align-items: center;
-  color: #A1AAA7;
+  text-align: center;
+  font-size: 14px;
+  color: white;
 }
 
 .topbar .site-info a:hover {
   text-decoration: none;
-}
-
-.topbar .site-info a span {
-  font-size: 16px;
-  margin-right: 6px;
+  text-align: center;
 }
 
 .topbar .site-info .divider {
-  margin-left: 8px;
-  margin-right: 8px;
-  color: #BEC8B8;
+  margin-left: 2px;
+  margin-right: 2px;
+  color: black;
+  text-align: center;
 }
-
-.topbar .social-mini-button a {
-  display: inline-block;
-  padding: 4px 8px;
-  color: #A1AAA7;
-}
-
-.topbar .social-mini-button a:hover {
-  text-decoration: none;
-  color: #6E807A;
-}
-
 
 .btn {
   padding: 8px 24px;

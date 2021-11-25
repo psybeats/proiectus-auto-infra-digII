@@ -1,0 +1,4 @@
+
+python:S1192"vDefine a constant instead of duplicating this literal "INSERT INTO `roles` (`id`, `tipoRol`) VALUES (%s, %s)" 3 times.(å—­Ö
+¯python:S1192"–Define a constant instead of duplicating this literal "INSERT INTO `servicios` (`id`, `nombreServicio`, `costoServicio`) VALUES (%s, %s, %s)" 8 times.(×šÃå
+Æpython:S1192"¡Define a constant instead of duplicating this literal "INSERT INTO `clinicas` (`id`, `nombreClinica`, `direcccion`, `telefono`) VALUES (%s, %s, %s, %s)" 3 times.(Óç´ÿÿÿÿÿ8†«Õ Õ/
