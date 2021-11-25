@@ -16,7 +16,7 @@ from app.models.pago import Pago
 from app.models.consultorio import Consultorio
 from app.models.clinica import Clinica
 
-import configPROCESOS as procesos
+import createPROCESOS as p
 
 from app import db
 
@@ -77,11 +77,8 @@ def servicios():
             error = "Se requiere un nombre del servicio"
         elif not costoServicio:
             error = "Se requiere un costo de servicio"
-        else:
-            flash(NOTSERVICES, category='error')
-
         if error is not None:
-            flash(error, category='error')
+            flash(error)
         else:
             db.session.add(servicio)
             db.session.commit()
@@ -142,7 +139,8 @@ def citas():
             db.session.add(registro)
             db.session.commit()
 
-            procesos.random_registoCitas()
+            #CAUSA FALLAS, SOLUCIONAR!
+            p.random_registoCitas()
             
 
             return redirect(url_for("DentalShield.citas"))

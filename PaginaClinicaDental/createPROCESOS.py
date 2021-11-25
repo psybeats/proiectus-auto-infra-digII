@@ -2,7 +2,7 @@ import pymysql
 
 
 def random_registoCitas():
-  connection = pymysql.Connection(host="localhost", user="root", password="root", db="clinica_dental")
+  connection = pymysql.Connection(host="localhost", user="root", password="Donitas342", db="clinica_dental")
   cursorr = connection.cursor()
 
   pemple = cursorr.execute('SELECT * FROM empleados WHERE idRolEmpleado = 2;')

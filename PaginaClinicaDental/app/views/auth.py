@@ -29,7 +29,7 @@ auth = Blueprint("auth", __name__, url_prefix="/auth")
 @login_required
 def signup():
     consult = Consultorio.query.all()
-    clinic =  Clinica.query.all()
+    clinic = Clinica.query.all()
     rol = Rol.query.all()
     if request.method == "POST":
         username = request.form.get("username")
@@ -59,25 +59,28 @@ def signup():
             flash('La contraseña es muy corta.', category='error')
         elif len(correoElectronico) < 6:
             flash("El correo electrónico es invalido.", category='error')
+        else:
+            new_user = Empleado(
+                username,
+                apellidoPAtEmpleado,
+                apellidoMatEmpleado,
+                generate_password_hash(password, method='sha256'),
+                correoElectronico,
+                idConsultorioEmple,
+                idClinicaEmpleado,
+                tipoRol,
+                estadoEmpleado,
+                creado,
+            )
 
-        new_user = Empleado(
-            username,
-            apellidoPAtEmpleado,
-            apellidoMatEmpleado,
-            generate_password_hash(password, method='sha256'),
-            correoElectronico,
-            idConsultorioEmple,
-            idClinicaEmpleado,
-            tipoRol,
-            estadoEmpleado,
-            creado,
-        )
+            db.session.add(new_user)
+            db.session.commit()
+            # Sirve para que inicie sesión de manera automatica al crear un usuario
+            #login_user(new_user, remember=True)
+            flash('¡Usuario creado!', category='success')
+            return redirect(url_for('auth.login'))
 
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user, remember=True)
-        flash('¡Usuario creado!', category='success')
-        return redirect(url_for('auth.login'))
+        #return redirect(url_for('auth.login'))
 
     return render_template("auth/signup.html", user=current_user, consult=consult, clinic=clinic, rol=rol)
 
