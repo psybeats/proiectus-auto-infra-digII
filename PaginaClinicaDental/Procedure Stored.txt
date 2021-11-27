@@ -1,8 +1,19 @@
-
-CREATE PROCEDURE `Insert_Emple_Consul_Random`(in randomEmp int, in randomclini int, in randomid int)
+CREATE PROCEDURE `Insert_Emple_Consul_Random`(
+in randomEmp int, in randomclini int, in randomid int)
 BEGIN
 UPDATE registroCitas SET 
 idEmpleRegis = FLOOR(RAND()*(randomEmp-1+1)+1),
 idConsultorioReg = FLOOR(RAND()*(randomclini-1+1)+1)
 where registroCitas.id = randomid;
+END
+
+-.------------------------------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE `insert_pago`(in ptotal float, 
+in pabono float, in pdeuda float, in pestado varchar(250), 
+in pidcitapago int, pidempleado int)
+BEGIN
+INSERT INTO pagos (pagoTotal, abono, debe, notaPago, idCitaPago, idEmpleados) 
+VALUES (ptotal, pabono, pdeuda, pestado,
+pidcitapago, pidempleado);
 END
