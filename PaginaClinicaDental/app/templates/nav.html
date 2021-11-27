@@ -17,11 +17,23 @@
             </li>
             {% if current_user.idRolEmpleado == 1 %}
             <span class="navbar-text">
-                <strong>{{ current_user.username }}</strong>({{ current_user.correoElectronico }})
+                <strong>{{ current_user.username }}</strong> (Administrador)
             </span>
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('DentalShield.perfil') }}">Perfil</a>
             </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>
+
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item"  href="{{ url_for('DentalShield.viewservicios') }}">Consultar Servicios</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewcitas') }}">Consultar Citas</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewpagos') }}">Consultar Pagos</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('DentalShield.servicios') }}">Crear Servicios</a>
             </li>
@@ -33,22 +45,24 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
             </li>
-
+            
             <!-- --------------------------------------medicos------------------------------ -->
             {% elif current_user.idRolEmpleado == 2 %}
 
             <span class="navbar-text">
-                <strong>{{ current_user.username }}</strong>({{ current_user.correoElectronico }})
+                <strong>{{ current_user.username }}</strong> (Medico)
             </span>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('DentalShield.perfil') }}">Perfil</a>
+            </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>
 
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewservicios') }}">Consultar
-                        Servicios</a></li>
+                    <li><a class="dropdown-item"  href="{{ url_for('DentalShield.viewservicios') }}">Consultar Servicios</a></li>
                     <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewcitas') }}">Consultar Citas</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewpagos') }}">Consultar Pagos</a></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </li>
@@ -56,20 +70,22 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
             </li>
-            <!-- ------------- Empleado Administrativo ----------------------------------------------- -->
+<!-- ------------- Empleado Administrativo ----------------------------------------------- -->
             {% elif current_user.idRolEmpleado == 3 %}
             <span class="navbar-text">
-                <strong>{{ current_user.username }}</strong>({{ current_user.correoElectronico }})
+                <strong>{{ current_user.username }}</strong> (Asistente Administrativo)
             </span>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('DentalShield.perfil') }}">Perfil</a>
+            </li>
 
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Consultas</a>
 
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewservicios') }}">Consultar
-                        Servicios</a></li>
+                    <li><a class="dropdown-item"  href="{{ url_for('DentalShield.viewservicios') }}">Consultar Servicios</a></li>
                     <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewcitas') }}">Consultar Citas</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('DentalShield.viewpagos') }}">Consultar Pagos</a></li>
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
             </li>
@@ -77,14 +93,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('auth.logout') }}">Cerrar sesión</a>
             </li>
-
+<!-- ------------------------------------sin loggin-------------------------------------------- -->
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('auth.login') }}">Iniciar sesión</a>
             </li>
-
+            
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('DentalShield.citas') }}">Generar Citas</a>
+                <a class="nav-link" href="{{ url_for('DentalShield.citas') }}">Agendar Citas</a>
             </li>
             {% endif %}
         </ul>

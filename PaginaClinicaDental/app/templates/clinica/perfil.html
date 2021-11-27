@@ -16,23 +16,23 @@
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
         <h1 class="title">Welcome, {{ current_user.username }}!</h1>
     </div>
+    <div>
+        {% if current_user.idRolEmpleado == 1 %}
+            <h2>Su rol es Administrador</h2>
+        {% elif current_user.idRolEmpleado == 2 %}
+            <h2>Su rol es Medico</h2>
+        {% elif current_user.idRolEmpleado == 3 %}
+            <h2>Su rol es Asistente Administrativo</h2>
+        {% else %}
+            <h1>Error</h1>
+        {% endif %}
+    </div>
+    <div>
+        <h2>Correo Electronico: {{ current_user.correoElectronico }}</h2>
+    </div>
 </div>
 <img src="{{ url_for('static', filename='img/assets/Saludos-unscreen.gif') }}" align="middle" alt="">
 {% endblock %}
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-<br/>
-{% for message in messages %}
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong style='font-size: 14px;'>{{ message }}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-{% endfor %}
-{% endif %}
-{% endwith %}
 
 {% block customJS %}
 <script src="{{ url_for('static', filename='js/centerBody.js')}}"></script>

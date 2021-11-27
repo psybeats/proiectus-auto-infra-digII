@@ -140,7 +140,9 @@ def citas():
             db.session.commit()
 
             #CAUSA FALLAS, SOLUCIONAR!
-            p.random_registoCitas()
+            p.random_registroCitas()
+
+            p.crear_pagos()
             
 
             return redirect(url_for("DentalShield.citas"))
@@ -177,8 +179,8 @@ def cancelarcitas(id):
 
     return render_template("clinica/cancelarCitas.html", user=current_user, cancita=cancita)
 
-#-------------------- Update Registro Citas 
-@dentalShield.route("/DentalShield/updatecitas/<int:id>" , methods=["GET", "POST"])
+#--------------------- Update Registro Citas 
+@dentalShield.route("/DentalShield/updatecitas/<int:id>", methods=["GET", "POST"])
 @login_required
 def updatecitas(id):
     posts = Servicio.query.all()
@@ -238,16 +240,62 @@ def updatecitas(id):
     return render_template("clinica/updatecitas.html", user=current_user, ucita=ucita, posts=posts, clinica=clinica, resulCita=resulCita)
 
 
-#Citas Registradas
+#------------------------------------------------------------Citas Registradas
 @dentalShield.route("/DentalShield/citas-registradas")
 @login_required
 def viewcitas():
     resulCita = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
-    ).filter(RegistroCita.idEmpleRegis == Empleado.id,
+    ).filter(
+    RegistroCita.idEmpleRegis == Empleado.id,
     RegistroCita.idServicioRegis == Servicio.id,
     RegistroCita.idConsultorioReg == Consultorio.id,
     RegistroCita.idClinicaRegis == Clinica.id).all()
     return render_template("clinica/vistaCitas.html", user=current_user, resulCita=resulCita)
 
+#Pagos Registrados 
+@dentalShield.route("/DentalShield/pagos-registrados")
+@login_required
+def viewpagos():
+    printPAgos = db.session.query(Pago, RegistroCita, Empleado, Servicio
+        ).filter(
+        Pago.idCitaPago == RegistroCita.id,
+        Pago.idEmpleados == Empleado.id,
+        RegistroCita.idServicioRegis == Servicio.id
+        ).all()
+    return render_template("clinica/vistapagos.html", user=current_user, printPAgos=printPAgos)
+
+
+#------------------------------------------Actualizar Pagos
+@dentalShield.route("/DentalShield/updatepagos/<int:id>", methods=["GET", "POST"])
+@login_required
+def updatepagos(id):
+    upago =db.session.query(Pago).filter(Pago.id == id).first()
+
+    if request.method == "POST":
+        abono = request.form.get("abono")
+        debe = upago.debe - float(abono)
+        notaPago = request.form.get("notaPago")
+        print(debe)
+        print(upago.pagoTotal)
+
+        error = None
+        if not abono:
+            error = "Se requiere ingresar una cantidad"
+        elif not notaPago:
+            error = "Se requiere un estatus del pago"
+
+        if error is not None:
+            flash(error)
+        else:
+            upago.abono = abono
+            upago.debe = debe
+            upago.notaPago = notaPago
+
+
+            db.session.add(upago)
+            db.session.commit()
+            return redirect(url_for("DentalShield.viewpagos"))
+
+    return render_template("clinica/pagos.html", user=current_user, upago=upago)
 
 
