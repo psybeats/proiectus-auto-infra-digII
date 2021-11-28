@@ -1,11 +1,10 @@
 {% extends './body.html' %}
 {% block header %}
-<h2>{% block title %}Listado de Servicios{% endblock %}</h2>
+<h2>{% block title %}Consultar Citas{% endblock %}</h2>
 {% endblock %}
 
-
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/serviciosC.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vistascitas.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
@@ -21,35 +20,52 @@
 
 <div class="conteiner">
     <div class="row justify-content-center pt-5 mt-5">
-        <div class="col-md-8 col-sm-8 col-xl-6 col-lg-5 formulario">
+        <div class="">
             <form class="form-signup" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
-                    <h1 class="text-light"> LISTADO DE SERVICIOS </h1>
+                    <h1 class="text-light"> Consultar Citas </h1>
                 </div>
-
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Nombre Paciente</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Nota</th>
+                        <th scope="col">Fecha Registro</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Fecha de Cancelación</th>
                         <th scope="col">Servicio</th>
-                        <th scope="col">Costo</th>
+                        <th scope="col">Total a Pagar</th>
+                        <th scope="col">Clinica</th>
+                        <th scope="col">Consultorio</th>
+                        <th scope="col">Empleado</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for serv in servicios %}
+                    {% for citam in printdoctor %}
                     <tr>
-                        <td scope="row">{{ serv.id }}</td>
-                        <td>{{ serv.nombreServicio }}</td>
-                        <td  class="fw-bolder">{{ serv.costoServicio }}</td>
+                        <td scope="row">{{ citam.RegistroCita.id }}</td>
+                        <td scope="row">{{ citam.RegistroCita.nombrePaciente }} {{citam.RegistroCita.apellidoPatPaciente }} {{ citam.RegistroCita.apellidoMatPaciente}}</td>
+                        <td scope="row">{{ citam.RegistroCita.edad }} años</td>
+                        <td scope="row">{{ citam.RegistroCita.telefono }}</td>
+                        <td scope="row">{{ citam.RegistroCita.nota }}</td>
+                        <td scope="row">{{ citam.RegistroCita.fechaRegistro }}</td>
+                        <td scope="row">{{ citam.RegistroCita.estatus }}</td>
+                        <td scope="row">{{ citam.RegistroCita.fechaCancelacion }}</td>
+                        <td scope="row">{{ citam.Servicio.nombreServicio }}</td>
+                        <td scope="row">{{ citam.Servicio.costoServicio }}</td>
+                        <td scope="row">{{ citam.Clinica.nombreClinica }}</td>
+                        <td scope="row">{{ citam.Consultorio.id }}</td>
+                        <td scope="row">{{ citam.Empleado.username }} {{ citam.Empleado.apellidoPAtEmpleado}} {{ citam.Empleado.apellidoMatEmpleado }}</td>
                     </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-                <p class="fst-italic">El Costo de Servicio Pueden Variar</p>
-
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('DentalShield.servicios')}}" class="btn btn-outline-success">Crear Servicios</a>
+                    <a href="{{url_for('DentalShield.citas')}}" class="btn btn-outline-success">Registrar Cita</a>
                     <a> | </a>
                     <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>
