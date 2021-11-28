@@ -18,7 +18,7 @@ def random_registroCitas():
   pconsul = cursorr.execute('SELECT * FROM consultorios;')
   pid = cursorr.execute('SELECT * FROM registroCitas;')
  
-  cursorr.callproc('Insert_Emple_Consul_Random1', [random_num,pconsul,pid])
+  cursorr.callproc('Insert_Emple_Consul_Random', [random_num,pconsul,pid])
 
 
   connection.commit()
