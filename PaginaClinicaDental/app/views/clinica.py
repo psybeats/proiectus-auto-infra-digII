@@ -20,6 +20,8 @@ import createPROCESOS as p
 
 from app import db
 
+mydb = pymysql.Connection(host="localhost", user="root", password="root", database="clinica_dental")
+mycursor = mydb.cursor()
 
 # lazuli = Blueprint("lazuli", __name__, url_prefix="/clinica")
 dentalShield = Blueprint("DentalShield", __name__,)
@@ -90,7 +92,7 @@ def servicios():
  
 
 @dentalShield.route("/DentalShield/servicios-creados")
-@login_required
+
 def viewservicios():
     servicios = Servicio.query.all()
     flash(MENSAJE, category='success')
@@ -101,6 +103,7 @@ def viewservicios():
 def citas():
     posts = Servicio.query.all()
     clinica = Clinica.query.all()
+   
     if request.method == "POST":
         nombrePaciente = request.form.get("nombrePaciente")
         apellidoPatPaciente = request.form.get("apellidoPatPaciente")
@@ -250,9 +253,26 @@ def viewcitas():
     RegistroCita.idServicioRegis == Servicio.id,
     RegistroCita.idConsultorioReg == Consultorio.id,
     RegistroCita.idClinicaRegis == Clinica.id).all()
+
     return render_template("clinica/vistaCitas.html", user=current_user, resulCita=resulCita)
 
-#Pagos Registrados 
+#----------------------------------------------------------Citas Registradas por Medico
+@dentalShield.route("/DentalShield/citas-registradas-medicos")
+@login_required
+def viewcitasmedicos():
+    idusuario = current_user.id
+    print(idusuario)
+    printdoctor = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
+    ).filter(
+    RegistroCita.idEmpleRegis == Empleado.id,
+    RegistroCita.idServicioRegis == Servicio.id,
+    RegistroCita.idConsultorioReg == Consultorio.id,
+    RegistroCita.idClinicaRegis == Clinica.id,
+    RegistroCita.idEmpleRegis == idusuario).all()
+    
+    return render_template("clinica/vistaCitasMedicos.html", user=current_user, printdoctor=printdoctor)
+
+#-------------------------------------------------------------Pagos Registrados 
 @dentalShield.route("/DentalShield/pagos-registrados")
 @login_required
 def viewpagos():
@@ -287,7 +307,7 @@ def updatepagos(id):
         if error is not None:
             flash(error)
         else:
-            upago.abono = abono
+            upago.abono = upago.pagoTotal - debe
             upago.debe = debe
             upago.notaPago = notaPago
 
