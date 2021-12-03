@@ -10,12 +10,12 @@
 2. Crear la base de datos. Esto puede realizarse corriendo el archivo "createDB.py".
 3. Correr/Ejecutar la aplicación web, en concreto el archivo "main.py".
 4. Correr/Ejecutar el archivo "allConfigDB.py".
-5. Listo.
-
+5. Crear los procesos almacenados directamente en la DB, estan en el archivo "Procedure Stored.txt".
+6. Listo
 ## Uso
 
 1. Se puede acceder a la aplicación web mediante: http://localhost:4200/
 
 ]]></content>
-  <tabTrigger>readme</tabTrigger>
+  <tabTrigger></tabTrigger>
 </snippet>

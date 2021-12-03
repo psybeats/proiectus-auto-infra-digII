@@ -89,10 +89,10 @@ def signup():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get("username")
+        correoElectronico = request.form.get("correoElectronico")
         password = request.form.get("password")
 
-        user = Empleado.query.filter_by(username=username).first()
+        user = Empleado.query.filter_by(correoElectronico=correoElectronico).first()
         if user:
             if check_password_hash(user.password, password):
                 flash(LOGGED_IN, category='success')

@@ -2,7 +2,7 @@ import pymysql
 import random
 
 def random_registroCitas():
-  connection = pymysql.Connection(host="localhost", user="root", password="root", db="clinica_dental")
+  connection = pymysql.Connection(host="localhost", user="root", password="Donitas342", db="clinica_dental")
   cursorr = connection.cursor()
 
   cursorr.execute('SELECT id FROM empleados WHERE idRolEmpleado = 2;')
@@ -29,7 +29,7 @@ def crear_pagos():
   mydb = pymysql.Connection(
   host="localhost",
   user="root",
-  password="root",
+  password="Donitas342",
   database="clinica_dental"
   )
   mycursor = mydb.cursor()
