@@ -69,9 +69,12 @@
                     {% endfor %}
                     </tbody>
                 </table>
+
                 <div class="form-group mx-sm-4 pb-2">
                     <a href="{{url_for('DentalShield.citas')}}" class="btn btn-outline-success">Registrar Cita</a>
-                    <a> | </a>
+                    <a>   </a>
+                    <a href="{{url_for('DentalShield.pdf_citastotales')}}" class="btn btn-outline-danger">Descargar Citas</a>
+                    <a>   </a>
                     <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>
                 {% with messages = get_flashed_messages() %}
