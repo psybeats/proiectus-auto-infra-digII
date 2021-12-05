@@ -72,17 +72,6 @@
                         <input type="datetime-local" name="fechaRegistro" id="fechaRegistro" class="form-control"
                                maxlength="255" required value="{{ ucita.fechaRegistro }}">
                     </div>
-
-                    <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                        <label for="nombreServicio">Tratamientos Dentales:</label>
-                        <select name="nombreServicio" id="nombreServicio" class="custom-select">
-                            {% for post in posts %}
-                            <option value="{{ post.id }}">{{ post.nombreServicio }} costo: ${{ post.costoServicio }}
-                            </option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
                     <div class="col-12 col-sm-6 py-2 wow fadeInRight">
                         <label for="idClinicaRegis">Clinicas:</label>
                         <select name="idClinicaRegis" id="idClinicaRegis" class="custom-select">

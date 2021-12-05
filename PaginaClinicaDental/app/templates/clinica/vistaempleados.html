@@ -1,10 +1,10 @@
 {% extends './body.html' %}
 {% block header %}
-<h2>{% block title %}Consultar Citas{% endblock %}</h2>
+<h2>{% block title %}Consultar Empleados{% endblock %}</h2>
 {% endblock %}
 
 {% block customCSS %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/vistascitas.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/serviciosC.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/maicons.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='vendor/owl-carousel/css/owl.carousel.css') }}">
@@ -24,57 +24,39 @@
             <form class="form-signup" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
-                    <h1 class="text-light"> Consultas Citas </h1>
+                    <h1 class="text-light"> Consultas Empleados </h1>
                 </div>
                 <table class="table table-striped table-hover table-responsive-sm">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Nombre Paciente</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Telefono</th>
-                        <th scope="col">Nota</th>
-                        <th scope="col">Fecha Registro</th>
+                        <th scope="col">Nombre Empleado</th>
+                        <th scope="col">Correo Electronico</th>
                         <th scope="col">Estatus</th>
-                        <th scope="col">Fecha de Cancelación</th>
-                        <th scope="col">Servicio</th>
-                        <th scope="col">Total a Pagar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Clinica</th>
                         <th scope="col">Consultorio</th>
-                        <th scope="col">Empleado</th>
-                        <th scope="col">Editar</th>
+                        <th scope="col">Rol</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for conCita in resulCita %}
+                    {% for conEmp in ResulEmp %}
                     <tr>
-                        <td scope="row">{{ conCita.RegistroCita.id }}</td>
-                        <td scope="row">{{ conCita.RegistroCita.nombrePaciente }} {{conCita.RegistroCita.apellidoPatPaciente }} {{ conCita.RegistroCita.apellidoMatPaciente}}</td>
-                        <td scope="row">{{ conCita.RegistroCita.edad }} años</td>
-                        <td scope="row">{{ conCita.RegistroCita.telefono }}</td>
-                        <td scope="row">{{ conCita.RegistroCita.nota }}</td>
-                        <td scope="row">{{ conCita.RegistroCita.fechaRegistro }}</td>
-                        <td scope="row">{{ conCita.RegistroCita.estatus }}</td>
-                        <td scope="row">{{ conCita.RegistroCita.fechaCancelacion }}</td>
-                        <td scope="row">{{ conCita.Servicio.nombreServicio }}</td>
-                        <td scope="row">{{ conCita.RegistroCita.pagoTotalCitas }}</td>
-                        <td scope="row">{{ conCita.Clinica.nombreClinica }}</td>
-                        <td scope="row">{{ conCita.Consultorio.id }}</td>
-                        <td scope="row">{{ conCita.Empleado.username }} {{ conCita.Empleado.apellidoPAtEmpleado}} {{ conCita.Empleado.apellidoMatEmpleado }}</td>
-                        <td>
-                            <a href="updatecitas/{{ conCita.RegistroCita.id }}" class="btn btn-outline-dark">Actualizar Cita</a>
-                            <a href="cancelarcitas/{{ conCita.RegistroCita.id }}" class="btn btn-outline-dark">Cancelar  Cita</a>
-                        </td>
+                        <td scope="row">{{ conEmp.Empleado.id }}</td>
+                        <td scope="row">{{ conEmp.Empleado.username }} {{ conEmp.Empleado.apellidoPAtEmpleado}} {{ conEmp.Empleado.apellidoMatEmpleado }}</td>
+                        <td scope="row">{{ conEmp.Empleado.correoElectronico }}</td>
+                        <td scope="row">{{ conEmp.Empleado.estadoEmpleado }}</td>
+                        <td scope="row">{{ conEmp.Empleado.creado }}</td>
+                        <td scope="row">{{ conEmp.Clinica.nombreClinica }}</td>
+                        <td scope="row">{{ conEmp.Consultorio.id }}</td>
+                        <td scope="row">{{ conEmp.Rol.tipoRol }}</td>
+                        
                     </tr>
                     {% endfor %}
                     </tbody>
                 </table>
-
                 <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('DentalShield.citas')}}" class="btn btn-outline-success">Registrar Cita</a>
-                    <a>   </a>
-                    <a href="{{url_for('DentalShield.pdf_citastotales')}}" class="btn btn-outline-danger">Descargar Citas</a>
-                    <a>   </a>
+                    <a> | </a>
                     <a href="{{url_for('DentalShield.index')}}" class="btn btn-outline-primary">INDEX</a>
                 </div>
                 {% with messages = get_flashed_messages() %}

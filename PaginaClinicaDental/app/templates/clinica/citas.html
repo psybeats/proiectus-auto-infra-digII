@@ -59,18 +59,21 @@
                                placeholder="Eje. 7353901190" maxlength="15" required>
                     </div>
                     <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                        <label for="nota">Nota</label>
-                        <input type="text" name="nota" id="nota" class="form-control"
-                               placeholder="Escriba alguna información de importancia" minlength="6" maxlength="150"
-                               required>
+                        <label for="fecha">Fecha de Cita</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control" maxlength="255" required>
+                        <label for="hora">Hora de la Cita</label>
+                        <input type="time" name="hora" id="hora" min="09:00" max="20:00" 
+                        class="form-control" required>
+                        <p class="fst-italic">Horario de citas 9:00am a 08:00pm</p>
                     </div>
-
-                    <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                        <label for="fechaRegistro">Fecha de Cita</label>
-                        <input type="datetime-local" name="fechaRegistro" id="fechaRegistro" class="form-control"
-                               maxlength="255" required>
+                    <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                        <label for="idClinicaRegis">Clinicas</label>
+                        <select name="idClinicaRegis" id="idClinicaRegis" class="custom-select">
+                            {% for post1 in clinica %}
+                            <option value="{{ post1.id }}">{{ post1.nombreClinica }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-
                     <div class="col-12 col-sm-6 py-2 wow fadeInRight">
                         <label for="nombreServicio">Tratamientos Dentales</label>
                         <select name="nombreServicio" id="nombreServicio" class="custom-select">
@@ -81,24 +84,35 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-sm-6 py-2 wow fadeInRight">
-                        <label for="idClinicaRegis">Clinicas</label>
-                        <select name="idClinicaRegis" id="idClinicaRegis" class="custom-select">
-                            {% for post1 in clinica %}
-                            <option value="{{ post1.id }}">{{ post1.nombreClinica }}</option>
-                            {% endfor %}
-                        </select>
+                    <p>Haz clic para gregar más tratamientos dentales</p>
+
+                    <button id="btn" class="btn btn-light" onclick="fun()">Agregar</button>
+                    <div id = "con" style = "display: none">
+                        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                            <label for="nombreServicio2">Tratamiento Dental Extra</label>
+                            <select name="nombreServicio2" id="nombreServicio2" class="custom-select">
+                                {% for post in servTo %}
+                                <option value="{{ post.id }}">{{ post.nombreServicio }} costo: ${{ post.costoServicio }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 py-2 wow fadeInRight">
+                            <label for="nombreServicio3">Tratamiento Dental Extra 2</label>
+                            <select name="nombreServicio3" id="nombreServicio3" class="custom-select">
+                                {% for post in servTo %}
+                                <option value="{{ post.id }}">{{ post.nombreServicio }} costo: ${{ post.costoServicio }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                 </center>
 
                 <div class="form-group mx-sm-4 pb-2">
-                    <button class="btn btn-primary mt-3 wow zoomIn" type="submit">REGISTRAR CITA</button>
+                    <button class="btn btn-primary mt-3 wow zoomIn" type="submit" >REGISTRAR CITA</button>
                 </div>
-
-                <div class="form-group mx-sm-4 pb-2">
-                    <a href="{{url_for('DentalShield.pdf_ultimacita')}}" class="btn btn-danger">Descargar PDF</a>
-                </div>
-
+                
                 <div class="form-group mx-sm-4 pb-2">
                     <a href="{{url_for('auth.login')}}" class="btn btn-outline-success">Iniciar Sesión</a>
                     <a>   </a>
@@ -133,6 +147,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script type="text/javascript">
+    var flag = false;
+    var div = document.getElementById("con");
+
+    function fun() {
+        if (flag ^= true) {
+                         div.style.display = "block"; // display
+        } else {
+                         div.style.display = "none"; // hide
+        }
+    }
+</script>
+
 {% endblock %}
 
 {% endblock %}
