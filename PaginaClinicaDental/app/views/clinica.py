@@ -21,9 +21,6 @@ import createPROCESOS as p
 
 from app import db
 
-#mydb = pymysql.Connection(host="localhost", user="root", password="Donitas342", database="clinica_dental")
-#mycursor = mydb.cursor()
-
 # lazuli = Blueprint("lazuli", __name__, url_prefix="/clinica")
 dentalShield = Blueprint("DentalShield", __name__,)
 
@@ -94,15 +91,17 @@ def servicios():
 
 @dentalShield.route("/DentalShield/servicios-creados")
 
+# Ver Servicios
 def viewservicios():
-    servicios = Servicio.query.all()
+    servicios = db.session.query(Servicio).filter(Servicio.id >= 2).all()
     flash(MENSAJE, category='success')
     return render_template("clinica/serviciosC.html", user=current_user, servicios=servicios)
 
 #Registro de Citas
 @dentalShield.route("/DentalShield/citas", methods=["GET", "POST"])
 def citas():
-    posts = Servicio.query.all()
+    posts = db.session.query(Servicio).filter(Servicio.id >= 2).all() 
+    servTo = Servicio.query.all()
     clinica = Clinica.query.all()
    
     if request.method == "POST":
@@ -112,15 +111,18 @@ def citas():
         edad = request.form.get("edad")
         estatus = "Cita Activa"
         telefono = request.form.get("telefono")
-        nota = request.form.get("nota")
-        fechaRegistro = request.form.get("fechaRegistro")
-        fechaCancelacion = request.form.get("fechaCancelacion")
+        nota = "Sin Nota Previa"
+        fecha = request.form.get("fecha")
+        hora = request.form.get("hora")
+        fechaCancelacion = request.form.get("fechaCancelacion") 
         idServicioRegis = request.form.get("nombreServicio")
+        idServicioRegisDos = request.form.get("nombreServicio2")
+        idServicioRegisTres =  request.form.get("nombreServicio3")
         idClinicaRegis = request.form.get("idClinicaRegis")
         
+        fechaRegistro = fecha + " " + hora
 
-
-        registro = RegistroCita(nombrePaciente, apellidoPatPaciente, apellidoMatPaciente, edad, estatus, telefono, nota, fechaRegistro, fechaCancelacion, idServicioRegis, idClinicaRegis)
+        registro = RegistroCita(nombrePaciente, apellidoPatPaciente, apellidoMatPaciente, edad, estatus, telefono, nota, fechaRegistro, fechaCancelacion, idServicioRegis, idServicioRegisDos, idServicioRegisTres, idClinicaRegis)
 
         error = None
         if not nombrePaciente:
@@ -144,13 +146,45 @@ def citas():
             db.session.commit()
 
             #CAUSA FALLAS, SOLUCIONAR!
-            p.random_registroCitas()
+            p.random_registroCitas(idClinicaRegis)
             p.crear_pagos()
             
+            return redirect(url_for("DentalShield.printCitas"))
 
-            return redirect(url_for("DentalShield.citas"))
+    return render_template("clinica/citas.html", posts=posts, clinica=clinica, user=current_user, servTo=servTo)
 
-    return render_template("clinica/citas.html", posts=posts, clinica=clinica, user=current_user)
+#Print Vista Citas
+@dentalShield.route("/DentalShield/printCitas")
+def printCitas():
+    mydb = pymysql.Connection(host="localhost", user="root", password="root", database="clinica_dental")
+    mycursor = mydb.cursor()
+
+    mycursor.execute('SELECT MAX(id) AS id FROM registroCitas')
+    lastid = mycursor.fetchone()
+    idFin = lastid[0]
+
+    ultimoReg = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
+    ).filter(
+    RegistroCita.idEmpleRegis == Empleado.id,
+    RegistroCita.idServicioRegis == Servicio.id,
+    RegistroCita.idConsultorioReg == Consultorio.id,
+    RegistroCita.idClinicaRegis == Clinica.id,
+    RegistroCita.id == idFin).all()
+
+
+    s2 = ('SELECT registroCitas.id, nombreServicio FROM registroCitas \
+    INNER JOIN servicios ON registroCitas.idServicioRegisDos = servicios.id WHERE registroCitas.id = %s')
+
+    s3 = ('SELECT registroCitas.id, nombreServicio FROM registroCitas \
+    INNER JOIN servicios ON registroCitas.idServicioRegisTres = servicios.id WHERE registroCitas.id = %s')
+
+    mycursor.execute(s2, (idFin,))
+    servicio1 = mycursor.fetchone()
+
+    mycursor.execute(s3, (idFin,))
+    servicio2 = mycursor.fetchone()
+
+    return render_template("clinica/printCitas.html", user=current_user, ultimoReg=ultimoReg, servicio1=servicio1, servicio2=servicio2 )
 
 
 #--------------------- Cancelar Citas
@@ -188,7 +222,7 @@ def cancelarcitas(id):
 def updatecitas(id):
     posts = Servicio.query.all()
     clinica = Clinica.query.all()
-    ucita =db.session.query(RegistroCita).filter(RegistroCita.id == id).first()
+    ucita = db.session.query(RegistroCita).filter(RegistroCita.id == id).first()
     
     resulCita = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
     ).filter(RegistroCita.idEmpleRegis == Empleado.id,
@@ -205,7 +239,6 @@ def updatecitas(id):
         telefono = request.form.get("telefono")
         nota = request.form.get("nota")
         fechaRegistro = request.form.get("fechaRegistro")
-        idServicioRegis = request.form.get("nombreServicio")
         idClinicaRegis = request.form.get("idClinicaRegis")
 
 
@@ -233,7 +266,6 @@ def updatecitas(id):
             ucita.telefono = telefono
             ucita.nota = nota 
             ucita.fechaRegistro = fechaRegistro
-            ucita.idServicioRegis = idServicioRegis
             ucita.idClinicaRegis = idClinicaRegis
 
             db.session.add(ucita)
@@ -322,14 +354,14 @@ def updatepagos(id):
 @dentalShield.route('/DentalShield/desc-pdf-ultima-cita')
 def pdf_ultimacita():
     try:
-        connection = pymysql.Connection(host="localhost", user="root", password="Donitas342", db="clinica_dental")
+        connection = pymysql.Connection(host="localhost", user="root", password="root", db="clinica_dental")
         cursorr = connection.cursor()
         cursorr.execute('SELECT * FROM registroCitas WHERE id = (SELECT MAX(id) FROM registroCitas);')
         lastid = cursorr.fetchall()
         last = lastid
         lista_datos = list(last)
 
-        con = pymysql.connect(host='localhost', user='root', password='Donitas342', db='clinica_dental',cursorclass=pymysql.cursors.DictCursor)
+        con = pymysql.connect(host='localhost', user='root', password='root', db='clinica_dental',cursorclass=pymysql.cursors.DictCursor)
         cursorrr = con.cursor()
         # cursorrr.execute("SELECT id, nombrePaciente, edad, telefono, nota, fechaRegistro, estatus, fechaCancelacion FROM registroCitas")
         cursorrr.execute("SELECT id, nombrePaciente, edad, telefono, nota, fechaRegistro, estatus, fechaCancelacion FROM registroCitas LIMIT 1")
@@ -380,7 +412,7 @@ def pdf_ultimacita():
             pdf.ln()
 
         # Set up a image
-        pdf.image('https://res.cloudinary.com/dzal2zrbb/image/upload/v1638355218/samples/bubbles/banner_dentalShield_xcjhj2.png', x = 160, y =70, w = 90, h = 20, type = '', link = '')
+        #pdf.image('https://res.cloudinary.com/dzal2zrbb/image/upload/v1638355218/samples/bubbles/banner_dentalShield_xcjhj2.png', x = 160, y =70, w = 90, h = 20, type = '', link = '')
 
         # Pie de pagina
         # Setting position at 1.5 cm from bottom:
@@ -392,9 +424,9 @@ def pdf_ultimacita():
         # Printing page number
         pdf.cell(0, 10, f"Page {pdf.page_no()}", 0, 0, "C")
 
-        pdf.output('ultima-cita.pdf', 'F')
+        pdf.output('regisrto-cita.pdf', 'F')
 
-        return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf',headers={'Content-Disposition': 'attachment;filename=ultima-cita.pdf'})
+        return Response(pdf.output(dest='S').encode('latin-1'), mimetype='application/pdf',headers={'Content-Disposition': 'attachment;filename=registro-cita.pdf'})
 
     except Exception as e:
         print(e)
@@ -454,13 +486,13 @@ def pdf_citastotales():
             pdf.cell(w=25, h=12, txt=valor.RegistroCita.estatus, border=1, align='L', fill=0)
             pdf.cell(w=35, h=12, txt=str(valor.RegistroCita.fechaCancelacion), border=1, align='L', fill=0)
             pdf.cell(w=35, h=12, txt=valor.Servicio.nombreServicio, border=1, align='L', fill=0)
-            pdf.cell(w=20, h=12, txt=str(valor.Servicio.costoServicio), border=1, align='C', fill=0)
+            pdf.cell(w=20, h=12, txt=str(valor.RegistroCita.pagoTotalCitas), border=1, align='C', fill=0)
             pdf.cell(w=25, h=12, txt=valor.Clinica.nombreClinica, border=1, align='L', fill=0)
             pdf.cell(w=20, h=12, txt=str(valor.Consultorio.id), border=1, align='C', fill=0)
             pdf.multi_cell(w=0, h=12, txt=emcompleato, border=1, align='L', fill=0)
 
         # Set up a image
-        pdf.image('https://res.cloudinary.com/dzal2zrbb/image/upload/v1638355218/samples/bubbles/banner_dentalShield_xcjhj2.png', x = 160, y =70, w = 90, h = 20, type = '', link = '')
+        #pdf.image('https://res.cloudinary.com/dzal2zrbb/image/upload/v1638355218/samples/bubbles/banner_dentalShield_xcjhj2.png', x = 160, y =70, w = 90, h = 20, type = '', link = '')
 
         # Pie de pagina
         # Setting position at 1.5 cm from bottom:
@@ -484,3 +516,15 @@ def pdf_citastotales():
 
     finally:
         print("Listo 🥵")
+
+
+#Vista Empleados
+@dentalShield.route("/DentalShield/Empleados")
+@login_required
+def viweempleados():
+    ResulEmp = db.session.query(Empleado, Rol, Consultorio, Clinica 
+    ).filter(Empleado.id == Empleado.id,
+    Empleado.idRolEmpleado == Rol.id,
+    Empleado.idConsultorioEmple == Consultorio.id,
+    Empleado.idClinicaEmpleado == Clinica.id).all()
+    return render_template("clinica/vistaempleados.html", user=current_user, ResulEmp=ResulEmp)
