@@ -1,3 +1,4 @@
+DELIMITER //
 CREATE PROCEDURE Insert_Emple_Random(
 in randomEmp int, in randomclini int, in randomid int)
 BEGIN
@@ -5,10 +6,12 @@ UPDATE registroCitas SET
 idEmpleRegis = randomEmp,
 idConsultorioReg = randomclini 
 WHERE registroCitas.id = randomid;
-END
+END//
+
+DELIMITER ;
 
 -.------------------------------------------------------------------------------------------------------------------------------
-
+DELIMITER //
 CREATE PROCEDURE `insert_pago`(in ptotal float, 
 in pabono float, in pdeuda float, in pestado varchar(250), 
 in pidcitapago int, pidempleado int)
@@ -16,4 +19,19 @@ BEGIN
 INSERT INTO pagos (pagoTotal, abono, debe, notaPago, idCitaPago, idEmpleados) 
 VALUES (ptotal, pabono, pdeuda, pestado,
 pidcitapago, pidempleado);
-END
+END//
+
+DELIMITER ;
+
+
+-.------------------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+
+CREATE  PROCEDURE `pago_update`(in pago float, idCitas int)
+BEGIN
+UPDATE registroCitas SET 
+pagoTotalCitas = pago
+WHERE registroCitas.id = idCitas;
+END//
+
+DELIMITER ;
