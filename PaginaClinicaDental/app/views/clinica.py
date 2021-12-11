@@ -288,6 +288,32 @@ def viewcitas():
 
     return render_template("clinica/vistaCitas.html", user=current_user, resulCita=resulCita)
 
+#---------------------------- Citas Registradas por Busqueda
+@dentalShield.route("/DentalShield/busqueda-citas-registras", methods=["GET", "POST"])
+@login_required
+def viewcitasxsearch():
+    busquedas = ''
+    if request.method == "POST":
+        fecha1 = request.form.get('primerFecha')
+        fecha2 = request.form.get('segundaFecha')
+
+        regis1 = fecha1
+        regis2 = fecha2
+
+        busquedas = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
+        ).filter(
+        RegistroCita.idEmpleRegis == Empleado.id,
+        RegistroCita.idServicioRegis == Servicio.id,
+        RegistroCita.idConsultorioReg == Consultorio.id,
+        RegistroCita.idClinicaRegis == Clinica.id,
+        RegistroCita.fechaRegistro.between(regis1,regis2)).all()
+
+        print(busquedas)
+                
+        db.session.commit()
+
+    return render_template("clinica/vistaCitasBusca.html", user=current_user, busquedas=busquedas)
+
 #----------------------------------------------------------Citas Registradas por Medico
 @dentalShield.route("/DentalShield/citas-registradas-medicos")
 @login_required

@@ -24,19 +24,26 @@
             <form class="form-signup" method="POST">
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group text-center pt-3">
-                    <h1 class="text-light"> Consultar Citas </h1>
+                    <h1 class="text-light"> Consultas Citas </h1>
                 </div>
 
-                <div>
-                    
-                </div>
-
+                <p><strong>Realizar una Busqueda Entre Dos Fechas</strong></p>
+            
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
-                          <p><strong>Para Realizar una Busqueda Entre Dos Fechas</strong></p>
-                        <a href="{{url_for('DentalShield.viewcitasxsearch')}}" class="btn btn-outline-primary">Click Aquí</a>
+                            <label for="primerFecha">Primer Fecha</label>
+                            <input type="date" name="primerFecha" id="primerFecha" class="form-control"placeholder="Ingresa tu primer fecha" maxlength="20" required>
+
                         </div>
+                        <div class="col-12 col-sm-6 py-2 wow fadeInLeft">
+                            <label for="segundaFecha">Segunda Fecha</label>
+                            <input type="date" name="segundaFecha" id="segundaFecha" class="form-control" placeholder="Ingresa tu segunda Fecha" maxlength="25" required>
+                        </div>
+                        <center><div class="form-group mx-sm-4 pb-2">
+                            <button class="btn btn-outline-success" type="submit" >Realizar Busqueda</button>
+                        </div></center>
+
                     </div>
                 </div>
 
@@ -60,7 +67,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for conCita in resulCita %}
+                    {% for conCita in busquedas %}
                     <tr>
                         <td scope="row">{{ conCita.RegistroCita.id }}</td>
                         <td scope="row">{{ conCita.RegistroCita.nombrePaciente }} {{conCita.RegistroCita.apellidoPatPaciente }} {{ conCita.RegistroCita.apellidoMatPaciente}}</td>

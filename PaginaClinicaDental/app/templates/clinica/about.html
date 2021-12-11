@@ -162,6 +162,10 @@
         </div>
     </div>
 </div> <!-- .page-section -->
+
+<div class="maps-container wow fadeInUp">
+    <div id="google-maps"></div>
+</div>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <br/>
@@ -183,4 +187,6 @@
 <script src="{{ url_for('static', filename='vendor/owl-carousel/js/owl.carousel.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/wow/wow.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIA_zqjFMsJM_sxP9-6Pde5vVCTyJmUHM&callback=initMap"></script>
+<script src="{{ url_for('static', filename='js/google-maps.js') }}"></script>
 {% endblock %}
