@@ -159,6 +159,17 @@
         }
     }
 </script>
+<script>
+    const picker = document.getElementById('fecha');
+    picker.addEventListener('input', function(e){
+    var day = new Date(this.value).getUTCDay();
+    if([6,0].includes(day)){
+        e.preventDefault();
+        this.value = '';
+        alert('Fines de Semana No se Trabaja');
+        }
+    });
+</script>
 
 {% endblock %}
 

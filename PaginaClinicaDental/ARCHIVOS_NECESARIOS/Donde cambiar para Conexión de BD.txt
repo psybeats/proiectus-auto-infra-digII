@@ -1,0 +1,22 @@
+archivo funcitons.py 
+linea 1
+
+archivo createPROCESOS.py
+línea 5
+línea 33
+
+archivo createDB.py
+línea 7
+línea 15
+
+archivo config.py
+línea 8
+
+archivo allConfigDB.py
+línea 7
+línea 55
+
+archivo clinica.py
+línea 159
+línea 396
+línea 403
