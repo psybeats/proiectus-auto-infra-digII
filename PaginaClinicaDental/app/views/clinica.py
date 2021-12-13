@@ -18,12 +18,12 @@ from app.models.consultorio import Consultorio
 from app.models.clinica import Clinica
 
 import createPROCESOS as p
+import functions as f
 
 from app import db
 
 # lazuli = Blueprint("lazuli", __name__, url_prefix="/clinica")
 dentalShield = Blueprint("DentalShield", __name__,)
-
 
 # Inicio del sistema web
 @dentalShield.route("/")
@@ -293,12 +293,10 @@ def viewcitas():
 @login_required
 def viewcitasxsearch():
     busquedas = ''
+    prome = ''
     if request.method == "POST":
         fecha1 = request.form.get('primerFecha')
         fecha2 = request.form.get('segundaFecha')
-
-        regis1 = fecha1
-        regis2 = fecha2
 
         busquedas = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
         ).filter(
@@ -306,20 +304,35 @@ def viewcitasxsearch():
         RegistroCita.idServicioRegis == Servicio.id,
         RegistroCita.idConsultorioReg == Consultorio.id,
         RegistroCita.idClinicaRegis == Clinica.id,
-        RegistroCita.fechaRegistro.between(regis1,regis2)).all()
+        RegistroCita.fechaRegistro.between(fecha1,fecha2)).all()
 
-        print(busquedas)
-                
-        db.session.commit()
+        prome = f.promedio()
+        print(prome)
 
-    return render_template("clinica/vistaCitasBusca.html", user=current_user, busquedas=busquedas)
+    return render_template("clinica/vistaCitasBusca.html", user=current_user, busquedas=busquedas, prome=prome)
 
+#---------------------------------------------------------Ver Citas, por medico y por fecha 
+@dentalShield.route("/DentalShield/citas-registradas-date", methods=["GET", "POST"])
+@login_required
+def viewcitasdatemedic():
+    empleado = db.session.query(Empleado).filter(Empleado.idRolEmpleado == 2).all()
+    buscarDE = ''
+    totalCitas = ''
+    if request.method == "POST":
+        fecha = request.form.get('fecha')
+        nempleado = request.form.get('idempleado')
+
+        buscarDE = f.fechaxmedico(fecha,nempleado)
+        totalCitas = f.citasMedico(nempleado)
+        
+    return render_template("clinica/vistaCitasDateMed.html", user=current_user, empleado=empleado, buscarDE=buscarDE, totalCitas=totalCitas, fecha=fecha)
+    
 #----------------------------------------------------------Citas Registradas por Medico
 @dentalShield.route("/DentalShield/citas-registradas-medicos")
 @login_required
 def viewcitasmedicos():
     idusuario = current_user.id
-    print(idusuario)
+    #print(idusuario)
     printdoctor = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
     ).filter(
     RegistroCita.idEmpleRegis == Empleado.id,
@@ -353,8 +366,8 @@ def updatepagos(id):
         abono = request.form.get("abono")
         debe = upago.debe - float(abono)
         notaPago = request.form.get("notaPago")
-        print(debe)
-        print(upago.pagoTotal)
+        #print(debe)
+        #print(upago.pagoTotal)
 
         error = None
         if not abono:

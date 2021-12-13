@@ -27,25 +27,24 @@
                 <div class="form-group text-center pt-3">
                     <h1 class="text-light"> LISTADO DE SERVICIOS </h1>
                 </div>
-
-                <table class="table table-striped table-hover">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Servicio</th>
-                        <th scope="col">Costo</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for serv in servicios %}
-                    <tr>
-                        <td scope="row">{{ serv.id }}</td>
-                        <td>{{ serv.nombreServicio }}</td>
-                        <td  class="fw-bolder">{{ serv.costoServicio }}</td>
-                    </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                    <table class="table table-striped table-hover ">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Servicio</th>
+                            <th scope="col">Costo</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for serv in servicios %}
+                        <tr>
+                            <td scope="row">{{ serv.id }}</td>
+                            <td>{{ serv.nombreServicio }}</td>
+                            <td  class="fw-bolder">{{ serv.costoServicio }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 <p class="fst-italic">El Costo de Servicio Pueden Variar</p>
 
                 <div class="form-group mx-sm-4 pb-2">
