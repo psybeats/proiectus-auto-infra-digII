@@ -395,16 +395,19 @@ def pdf_ultimacita():
     try:
         connection = pymysql.Connection(host="localhost", user="root", password="root", db="clinica_dental")
         cursorr = connection.cursor()
-        cursorr.execute('SELECT * FROM registroCitas WHERE id = (SELECT MAX(id) FROM registroCitas);')
-        lastid = cursorr.fetchall()
-        last = lastid
-        lista_datos = list(last)
+        cursorr.execute('SELECT registroCitas.id FROM registroCitas WHERE id = (SELECT MAX(id) FROM registroCitas);')
+        lastid = cursorr.fetchone()
+        last = lastid[0]
+        print(last)
 
-        con = pymysql.connect(host='localhost', user='root', password='root', db='clinica_dental',cursorclass=pymysql.cursors.DictCursor)
-        cursorrr = con.cursor()
-        # cursorrr.execute("SELECT id, nombrePaciente, edad, telefono, nota, fechaRegistro, estatus, fechaCancelacion FROM registroCitas")
-        cursorrr.execute("SELECT id, nombrePaciente, edad, telefono, nota, fechaRegistro, estatus, fechaCancelacion FROM registroCitas LIMIT 1")
-        result = cursorrr.fetchall()
+
+        unaCita = db.session.query(RegistroCita, Empleado, Servicio, Consultorio, Clinica 
+        ).filter(
+        RegistroCita.idEmpleRegis == Empleado.id,
+        RegistroCita.idServicioRegis == Servicio.id,
+        RegistroCita.idConsultorioReg == Consultorio.id,
+        RegistroCita.idClinicaRegis == Clinica.id
+        ).filter(RegistroCita.id == last).all()
 
         # Create instance of FPDF class
         pdf = FPDF(orientation='L', unit='mm', format='A3')
@@ -416,39 +419,74 @@ def pdf_ultimacita():
 
         # Encabezado
         pdf.set_font('Times', 'B', 16.0)
-        pdf.cell(w=0, h=20, txt='Mi Cita', border=1, align='C', fill=0, ln=1)
+        pdf.cell(w=0, h=20, txt='Registro de Cita', border=1, align='C', fill=0, ln=1)
         pdf.ln(5)
-        pdf.set_font('Arial', '', 9)
+        pdf.set_font('Arial', '', 10)
 
         # Columnas
-        for row in result:
-            # print(row)
+        #for row in result:
             # print(type(row))
-            dicColum = row.keys()
-            listColum = list(dicColum)
-            print(listColum)
-            print(len(listColum))
-            pdf.set_fill_color(193, 229, 252)  # Background colorof header
-            pdf.cell(10, 12, str(listColum[0]), border=1, align='C', fill=1)
-            pdf.cell(50, 12, str(listColum[1]), border=1, align='C', fill=1)
-            pdf.cell(20, 12, str(listColum[2]), border=1, align='C', fill=1)
-            pdf.cell(25, 12, str(listColum[3]), border=1, align='C', fill=1)
-            pdf.cell(40, 12, str(listColum[4]), border=1, align='C', fill=1)
-            pdf.cell(35, 12, str(listColum[5]), border=1, align='C', fill=1)
-            pdf.cell(25, 12, str(listColum[6]), border=1, align='C', fill=1)
-            pdf.multi_cell(w=0, h=12, txt=str(listColum[7]), border=1, align='L', fill=1)
+        #   dicColum = row.keys()
+        #    listColum = list(dicColum)
+        #    print(listColum)
+        #    print(len(listColum))
+        pdf.set_fill_color(193, 229, 252)  # Background colorof header
 
         # Valores
-        for row in lista_datos:
-            pdf.cell(w=10, h=12, txt=str(row[0]), border=1, align='C', fill=0)
-            pdf.cell(w=50, h=12, txt=str(row[1]), border=1, align='C', fill=0)
-            pdf.cell(w=20, h=12, txt=str(row[2]), border=1, align='C', fill=0)
-            pdf.cell(w=25, h=12, txt=str(row[3]), border=1, align='C', fill=0)
-            pdf.cell(w=40, h=12, txt=str(row[4]), border=1, align='C', fill=0)
-            pdf.cell(w=35, h=12, txt=str(row[5]), border=1, align='C', fill=0)
-            pdf.cell(w=25, h=12, txt=str(row[6]), border=1, align='C', fill=0)
-            pdf.multi_cell(w=0, h=12, txt=str(row[7]), border=1, align='L', fill=0)
-            pdf.ln()
+
+        for valor in unaCita:
+            ncompleto = valor.RegistroCita.nombrePaciente + " " + valor.RegistroCita.apellidoPatPaciente + " " + valor.RegistroCita.apellidoMatPaciente
+            emcompleato = valor.Empleado.username + " " + valor.Empleado.apellidoPAtEmpleado + " " + valor.Empleado.apellidoMatEmpleado
+
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='ID: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=10, h=12, txt=str(valor.RegistroCita.id), border=0, align='C', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Nombre: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=50, h=12, txt=ncompleto, border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Edad: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=15, h=12, txt=str(valor.RegistroCita.edad), border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Telefono: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=30, h=12, txt=str(valor.RegistroCita.telefono), border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Nota: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=40, h=12, txt=valor.RegistroCita.nota, border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Fecha Registro: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=45, h=12, txt=str(valor.RegistroCita.fechaRegistro), border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Estatus: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=25, h=12, txt=valor.RegistroCita.estatus, border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Servicio: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=35, h=12, txt=valor.Servicio.nombreServicio, border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Total: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=20, h=12, txt=str(valor.Servicio.costoServicio), border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Clinica: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=35, h=12, txt=valor.Clinica.nombreClinica, border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Consultorio: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=20, h=12, txt=str(valor.Consultorio.id), border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            pdf.cell(w=45, h=12, txt='Empleado: ', border=0, align='L', fill=0)
+            pdf.multi_cell(w=45, h=12, txt=emcompleato, border=0, align='L', fill=0)
+            pdf.cell(w=170, h=12, txt="", border=0, align='C', fill=0)
+            #pdf.ln()
+
+        pdf.multi_cell(w=10, h=10, txt="", border=0, align='C', fill=0)
+        pdf.multi_cell(w=0, h=10, txt="Apreciado " + ncompleto + ":", border=1, align='C', fill=0)
+        pdf.multi_cell(w=0, h=10, txt="¡Gracias por preferirnos! Estamos contentos de que haya\
+            solicitado un servicio con nosotros. Nuestro objetivo es que siempre esté satisfecho,\
+            así que avísenos si su nivel de satisfacción es el adecuado.", border=0, align='C', fill=0)
+        pdf.multi_cell(w=0, h=10, txt="¡Lo estaremos esperando! ", border=0, align='C', fill=0)
+        pdf.multi_cell(w=0, h=10, txt="¡Que tengas un gran día!", border=0, align='C', fill=0)
+        pdf.multi_cell(w=0, h=5, txt="", border=0, align='C', fill=0)
+        pdf.multi_cell(w=0, h=10, txt="Atentamente, ", border=0, align='C', fill=0)
+        pdf.multi_cell(w=0, h=10, txt="Tus amigos en DentalShield,", border=0, align='C', fill=0)
 
         # Set up a image
         #pdf.image('https://res.cloudinary.com/dzal2zrbb/image/upload/v1638355218/samples/bubbles/banner_dentalShield_xcjhj2.png', x = 160, y =70, w = 90, h = 20, type = '', link = '')
