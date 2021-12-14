@@ -318,6 +318,7 @@ def viewcitasdatemedic():
     empleado = db.session.query(Empleado).filter(Empleado.idRolEmpleado == 2).all()
     buscarDE = ''
     totalCitas = ''
+    fecha = ''
     if request.method == "POST":
         fecha = request.form.get('fecha')
         nempleado = request.form.get('idempleado')
